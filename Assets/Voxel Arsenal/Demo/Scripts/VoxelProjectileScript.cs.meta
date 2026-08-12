@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 973d5c7758cf2cc42aec43c5b8e597f5
+timeCreated: 1533764833
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - impactParticle: {instanceID: 0}
+  - projectileParticle: {instanceID: 0}
+  - muzzleParticle: {instanceID: 0}
+  - deathParticle: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
