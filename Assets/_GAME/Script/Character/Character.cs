@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Character : MonoBehaviour
+public abstract class Character : GameUnit
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator anim;
