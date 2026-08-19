@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class KeyBoardInputService : MonoBehaviour, InterfaceInputService
+public class KeyBoardInputService : MonoBehaviour, IInputService
 {
     public Vector3 MoveDirection
     {

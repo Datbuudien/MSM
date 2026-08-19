@@ -1,5 +1,5 @@
 using UnityEngine;
-public interface InterfaceInputService
+public interface IInputService
 {
     Vector3 MoveDirection{get;}
 }

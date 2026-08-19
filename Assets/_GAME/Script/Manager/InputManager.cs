@@ -7,7 +7,7 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] private KeyBoardInputService keyInput;
 
     private bool IsEnableInput=true;
-    private InterfaceInputService currentInput;
+    private IInputService currentInput;
     public  Vector3 MoveDirection
     {
         get
@@ -29,7 +29,7 @@ public class InputManager : Singleton<InputManager>
         inputType=type;
         currentInput = ResolveInput(type);
     }
-    private InterfaceInputService ResolveInput(InputType type)
+    private IInputService ResolveInput(InputType type)
     {
         switch (type)
         {
