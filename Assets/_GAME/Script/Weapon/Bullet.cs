@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Bullet : GameUnit
 {
-    [SerializeField]  private float speed = 1f;
+    [SerializeField]  private float speed = 6f;
     protected float Speed => speed;
     protected Vector3 StartPos{get;private set;}
     protected float RangeAttack{get;private set;}

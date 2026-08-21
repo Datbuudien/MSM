@@ -1314,11 +1314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6f4d3f8a8a16b43964795073aa1a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatingJoyStick
-  bg: {fileID: 0}
-  handle: {fileID: 0}
-  canvasGroup: {fileID: 0}
-  bgIMG: {fileID: 0}
-  handleIMG: {fileID: 0}
 --- !u!225 &1834393575
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1478,7 +1473,7 @@ Transform:
   m_GameObject: {fileID: 2070515100}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.023, y: 1.24, z: 2.049}
+  m_LocalPosition: {x: -0.023, y: 1.24, z: 1.249}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
