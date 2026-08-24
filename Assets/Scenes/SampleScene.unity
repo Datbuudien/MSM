@@ -643,6 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHand
   pt: 1
+  model: {fileID: 1221116863}
 --- !u!4 &996211046
 Transform:
   m_ObjectHideFlags: 0
@@ -734,7 +735,7 @@ MonoBehaviour:
   throwPoint: {fileID: 2070515101}
   weaponHand: {fileID: 996211045}
   attackSpeed: 1
-  attackRange: 1
+  attackRange: 10
 --- !u!95 &1023829714 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
@@ -744,6 +745,11 @@ Animator:
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
   m_PrefabInstance: {fileID: 2043861626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1221116863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2859168948040467610, guid: 25d2c1471e9ef0f4788058eaabbf81df, type: 3}
+  m_PrefabInstance: {fileID: 1490930437}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1490930437
 PrefabInstance:
@@ -797,7 +803,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: knife
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -837,9 +844,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoolController
   pools:
-  - prefab: {fileID: 8097320901435684394, guid: 25d2c1471e9ef0f4788058eaabbf81df, type: 3}
-    amount: 1
-    root: {fileID: 1517935804}
+  - prefab: {fileID: 9025571766105858825, guid: 624d251e8c0f33e4eba511c3d8befa2c, type: 3}
+    amount: 0
+    root: {fileID: 6024080230018340687, guid: 624d251e8c0f33e4eba511c3d8befa2c, type: 3}
 --- !u!4 &1517935804
 Transform:
   m_ObjectHideFlags: 0
@@ -1314,6 +1321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6f4d3f8a8a16b43964795073aa1a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatingJoyStick
+  bg: {fileID: 0}
+  handle: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  bgIMG: {fileID: 0}
+  handleIMG: {fileID: 0}
 --- !u!225 &1834393575
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1472,13 +1484,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070515100}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.023, y: 1.24, z: 1.249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.008, y: 0.87, z: 1.249}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1023829715}
-  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

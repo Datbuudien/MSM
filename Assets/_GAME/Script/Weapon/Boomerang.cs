@@ -15,7 +15,7 @@ public class Boomerang: Bullet
     {
         timer += Time.deltaTime;
         if(timer>=returnDelay) isReturning = true;
-        Vector3 d = isReturning? (owner.position-TF.position).normalized : TF.forward;
+        Vector3 d = isReturning? (owner.position-TF.position).normalized : -TF.up;
         TF.position += d*Time.deltaTime*Speed;
     }
     protected override bool IsFinished()

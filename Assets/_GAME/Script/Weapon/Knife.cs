@@ -3,6 +3,6 @@ public class Knife : Bullet
 {
     protected override void Move()
     {
-        TF.position += (-TF.up)*(Speed*Time.deltaTime);
+        TF.position += TF.forward*(Speed*Time.deltaTime);
     }
 }

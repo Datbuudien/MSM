@@ -7,7 +7,7 @@ public abstract class Character : GameUnit
     [SerializeField]private float speed=.5f;
     [SerializeField]private float roateSpeed =.5f;
     [SerializeField] private Transform throwPoint;
-    [SerializeField]private WeaponHand weaponHand;
+    [SerializeField]protected WeaponHand weaponHand;
     [SerializeField]private float attackSpeed =1f;
     [SerializeField]private float attackRange =1f;
     private string currentAnim;
@@ -46,6 +46,7 @@ public abstract class Character : GameUnit
         if(isMoving) return;
         Bullet b = HBPools.Spawn<Bullet>(weaponHand.poolType,throwPoint.position,throwPoint.rotation);
         b.OnInit(throwPoint.position,attackRange,TF);
+        weaponHand.SetVisible(false);
     }
     protected void ChangeAnim(string s)
     {
@@ -62,12 +63,19 @@ public abstract class Character : GameUnit
             if(!isAttacking) ChangeAnim(Constatnts.ANIM_IDE);
             return;
         }
-        isAttacking =false;
+        EndAttack();
         Quaternion targetRotation = Quaternion.LookRotation(d);
         Quaternion newRotation = Quaternion.Slerp(rb.rotation,targetRotation,roateSpeed*Time.fixedDeltaTime);
         rb.MoveRotation(newRotation);
         rb.MovePosition(rb.position+d*Time.fixedDeltaTime*speed);
         ChangeAnim(Constatnts.ANIM_RUN);
     }
-    public void OnAttackEnd()=>isAttacking= false;
+    public void OnAttackEnd()=>EndAttack();
+    private void EndAttack()
+    {
+        if(isAttacking==false) return;
+        isAttacking= false;
+        weaponHand.SetVisible(true);
+
+    }
 }

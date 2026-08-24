@@ -12,5 +12,6 @@ public class Player: Character
     public override void OnInit()
     {
         ChangeAnim(Constatnts.ANIM_IDE);
+        weaponHand.SetVisible(true);
     }
 }
