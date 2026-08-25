@@ -10,6 +10,7 @@ public abstract class Character : GameUnit
     [SerializeField]protected WeaponHand weaponHand;
     [SerializeField]private float attackSpeed =1f;
     [SerializeField]private float attackRange =1f;
+    
     private string currentAnim;
     private bool isMoving;
     private bool isAttacking;
