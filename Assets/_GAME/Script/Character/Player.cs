@@ -9,9 +9,4 @@ public class Player: Character
     {
         MoveByDirection(InputManager.Ins.MoveDirection);
     }
-    public override void OnInit()
-    {
-        ChangeAnim(Constatnts.ANIM_IDE);
-        weaponHand.SetVisible(true);
-    }
 }
