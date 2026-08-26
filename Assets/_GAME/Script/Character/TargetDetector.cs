@@ -13,6 +13,6 @@ public class TargetDetector : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         if(CharacterRegistry.TryGet(other,out Character ch)==false) return;
-        
+        owner.RemoveTarget(ch);
     }
 }

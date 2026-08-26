@@ -38,11 +38,14 @@ public abstract class Character : GameUnit
         attackTimer = 1/attackSpeed;
         isMoving = false;
         isAttacking=false;
-        ChangeAnim(Constatnts.ANIM_IDE);
+        currentAnim=Constatnts.ANIM_IDE;
+        anim.SetBool(currentAnim,true);
         weaponHand.SetVisible(true);
     }
+    protected virtual void OnUpdate(){}
     void Update()
     {
+        OnUpdate();
         attackTimer -= Time.deltaTime;
         if(attackTimer<=0f) Attack();
     }
@@ -100,6 +103,7 @@ public abstract class Character : GameUnit
     {
         attackRange = val;
         range.SetRange(val);
+        detector.SetRange(val);
     }
     public void AddTarget(Character target)
     {
