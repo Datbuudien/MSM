@@ -66,7 +66,7 @@ public abstract class Character : GameUnit
     {
         if(isMoving) return;
         Bullet b = HBPools.Spawn<Bullet>(weaponHand.poolType,throwPoint.position,throwPoint.rotation);
-        b.OnInit(throwPoint.position,attackRange,TF);
+        b.OnInit(throwPoint.position,attackRange,this);
         weaponHand.SetVisible(false);
     }
     protected void ChangeAnim(string s)
@@ -141,5 +141,9 @@ public abstract class Character : GameUnit
         dir.y=0f;
         if(dir.sqrMagnitude<tmp) return;
         rb.rotation = Quaternion.LookRotation(dir);
+    }
+    public void OnHit(Character c)
+    {
+        
     }
 }
