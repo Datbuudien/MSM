@@ -1,4 +1,6 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.AdaptivePerformance;
 public class Range : MonoBehaviour
 {
     [SerializeField]private Transform circle;

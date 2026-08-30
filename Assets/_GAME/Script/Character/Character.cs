@@ -15,7 +15,7 @@ public abstract class Character : GameUnit
     [SerializeField] private Range range;
     [SerializeField]private TargetDetector detector;
 
-    private string currentAnim;
+    private string currentAnim=Constatnts.ANIM_IDE;
     private bool isMoving;
     private bool isAttacking;
     private float attackTimer;
@@ -38,8 +38,7 @@ public abstract class Character : GameUnit
         attackTimer = 1/attackSpeed;
         isMoving = false;
         isAttacking=false;
-        currentAnim=Constatnts.ANIM_IDE;
-        anim.SetBool(currentAnim,true);
+        ChangeAnim(Constatnts.ANIM_IDE);
         weaponHand.SetVisible(true);
     }
     protected virtual void OnUpdate(){}

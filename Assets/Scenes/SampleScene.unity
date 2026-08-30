@@ -578,7 +578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3652238240193177425, guid: c406e1d0fd4ebbf4ba8ad0957678a235, type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4465783555042749224, guid: c406e1d0fd4ebbf4ba8ad0957678a235, type: 3}
       propertyPath: m_LocalPosition.x
@@ -674,6 +674,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &895164687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895164688}
+  m_Layer: 0
+  m_Name: PoolController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &895164688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895164687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1517935804}
+  - {fileID: 1664390565}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1023829715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4465783555042749224, guid: 557c9aed91d9d0c418914016df2e807f, type: 3}
@@ -755,7 +788,7 @@ GameObject:
   - component: {fileID: 1517935804}
   - component: {fileID: 1517935803}
   m_Layer: 0
-  m_Name: PoolController
+  m_Name: PoolWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,12 +818,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517935802}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 895164688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538412586
 GameObject:
@@ -1081,6 +1114,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1331668752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1664390564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664390565}
+  - component: {fileID: 1664390566}
+  m_Layer: 0
+  m_Name: PoolBot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1664390565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664390564}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 895164688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664390566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664390564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb65eeda258c1be4484481ddd6333afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolController
+  pools: []
 --- !u!1 &1743879734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3652238240193177425, guid: c406e1d0fd4ebbf4ba8ad0957678a235, type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4465783555042749224, guid: c406e1d0fd4ebbf4ba8ad0957678a235, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1394,7 +1472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6667187403782079716, guid: 557c9aed91d9d0c418914016df2e807f, type: 3}
       propertyPath: attackRange
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1413,6 +1491,6 @@ SceneRoots:
   - {fileID: 1568144627}
   - {fileID: 1743879737}
   - {fileID: 1538412589}
-  - {fileID: 1517935804}
+  - {fileID: 895164688}
   - {fileID: 1829755150}
   - {fileID: 640681537}
