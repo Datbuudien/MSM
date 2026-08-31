@@ -10,10 +10,7 @@ public class Bot:Character
         agent.updatePosition=false;
         agent.updateRotation=false;
     }
-    void Start()
-    {
-        OnInit();
-    }
+
     public override void Move()
     {
         if (agent.isOnNavMesh == false)
@@ -27,6 +24,7 @@ public class Bot:Character
     public override void OnInit()
     {
         base.OnInit();
+        agent.Warp(TF.position);
         ChangeState(new IdleState());
     }
     protected override void OnUpdate() => currentState?.OnExcute(this);
@@ -59,4 +57,12 @@ public class Bot:Character
         return agent.remainingDistance <=Constatnts.BOT_ARRIVE_DISTANCE;
 
     }
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        StopMoving();
+        BotManager.Ins.OnDeath(this);
+        Invoke(nameof(DespawnSelf),Constatnts.BOT_DESPAWN_DELAY);
+    }
+    private void DespawnSelf()=>HBPools.Despawn(this);
 }

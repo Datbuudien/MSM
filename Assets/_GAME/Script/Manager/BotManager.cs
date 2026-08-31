@@ -8,11 +8,6 @@ public class BotManager : Singleton<BotManager>
     [SerializeField]private float minDistanceToPlayer=10f;
     private readonly List<Bot> bots=new List<Bot>();
     public int AliveCount=>bots.Count;
-    private float sqrMinDis;
-    void Start()
-    {
-        sqrMinDis=minDistanceToPlayer*minDistanceToPlayer;
-    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public bool SpawnBot()
     {
@@ -25,7 +20,8 @@ public class BotManager : Singleton<BotManager>
     }
     public void OnDeath(Bot bot)
     {
-        
+        if(bots.Remove(bot)==false) return;
+        LevelManager.Ins.OnBotDeath();
     }
     public void CollectAll()
     {
@@ -33,7 +29,8 @@ public class BotManager : Singleton<BotManager>
         bots.Clear();
     }
     private bool TryGetSpawnPoint(out Vector3 point)
-    {
+    {   
+        float sqrMinDis=minDistanceToPlayer*minDistanceToPlayer;
         point = Vector3.zero;
         for(int i = 0; i < Constatnts.SPAWN_TRY_COUNT; i++)
         {

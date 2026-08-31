@@ -25,6 +25,8 @@ public abstract class Character : GameUnit
     public bool IsAttacking => isAttacking;
     public bool HasTarget=> GetNearestTarget() !=null;
     private readonly List<Character> targets = new List<Character>();
+    private bool isDead;
+    public bool IsDead=>isDead;
     protected virtual void Awake()
     {
         tmp = Constatnts.MOVE_THRESHOLD*Constatnts.MOVE_THRESHOLD;
@@ -34,6 +36,9 @@ public abstract class Character : GameUnit
     public abstract void Move();
     public virtual void OnInit()
     {
+        isDead=false;
+        coll.enabled=true;
+        CancelInvoke();
         targets.Clear();
         attackTimer = 1/attackSpeed;
         isMoving = false;
@@ -44,12 +49,14 @@ public abstract class Character : GameUnit
     protected virtual void OnUpdate(){}
     void Update()
     {
+        if(isDead) return;
         OnUpdate();
         attackTimer -= Time.deltaTime;
         if(attackTimer<=0f) Attack();
     }
     void FixedUpdate()
     {
+        if(isDead) return;
         Move();
     }
     public void Attack()
@@ -121,7 +128,7 @@ public abstract class Character : GameUnit
         for(int i= targets.Count-1; i>=0; i--)
         {
             Character tmp = targets[i];
-            if (tmp.gameObject.activeSelf == false)
+            if (tmp.gameObject.activeSelf == false || tmp.IsDead)
             {
                 targets.RemoveAt(i);
                 continue;
@@ -144,6 +151,13 @@ public abstract class Character : GameUnit
     }
     public void OnHit(Character c)
     {
-        
+        if(isDead) return;
+        OnDeath();
+    }
+    protected virtual void OnDeath()
+    {
+        isDead=true;
+        coll.enabled=false;
+        ChangeAnim(Constatnts.ANIM_DEAD);
     }
 }

@@ -28,18 +28,30 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void OnPlayerDeath()
     {
-        
+        GameManager.ChangeState(GameState.Finish);
+        //TODO: UI loose
     }
     public void SpawnUntilFull()
     {
-        
+        while (level.CanSpawnMore(BotManager.Ins.AliveCount))
+        {
+            if(BotManager.Ins.SpawnBot()==false) return;    
+            level.OnBotSpawned();
+        }
     }
     private void OnStageCleared()
     {
-        
+        if (level.HasNextStage == false)
+        {
+            OnWin(); 
+            return;
+        }
+        level.StartStage(level.CurrentStage+1);
+        SpawnUntilFull();
     }
     private void OnWin()
     {
-        
+        GameManager.ChangeState(GameState.Finish);
+        //TODO win
     }
 }
