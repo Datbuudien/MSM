@@ -797,8 +797,8 @@ MonoBehaviour:
   weaponHand: {fileID: 4295676884424192670}
   attackSpeed: 1
   attackRange: 10
-  range: {fileID: 8341934170425590244}
   detector: {fileID: 8598074803995425630}
+  range: {fileID: 8341934170425590244}
 --- !u!4 &3155953294090988619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3220319501169496967, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
