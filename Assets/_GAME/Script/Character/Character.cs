@@ -12,7 +12,7 @@ public abstract class Character : GameUnit
     [SerializeField]protected WeaponHand weaponHand;
     [SerializeField]private float attackSpeed =1f;
     [SerializeField]private float attackRange =1f;
-    [SerializeField] private Range range;
+
     [SerializeField]private TargetDetector detector;
 
     private string currentAnim=Constatnts.ANIM_IDE;
@@ -37,6 +37,7 @@ public abstract class Character : GameUnit
     public virtual void OnInit()
     {
         isDead=false;
+        rb.isKinematic=false;
         coll.enabled=true;
         CancelInvoke();
         targets.Clear();
@@ -108,9 +109,10 @@ public abstract class Character : GameUnit
     public void SetAttackRange(float val)
     {
         attackRange = val;
-        range.SetRange(val);
         detector.SetRange(val);
+        OnAttackRangeCircleChange(val);
     }
+    protected virtual void OnAttackRangeCircleChange(float val){}
     public void AddTarget(Character target)
     {
         if(targets.Contains(target)) return;
@@ -158,6 +160,7 @@ public abstract class Character : GameUnit
     {
         isDead=true;
         coll.enabled=false;
+        rb.isKinematic=true;
         ChangeAnim(Constatnts.ANIM_DEAD);
     }
 }
