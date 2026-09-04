@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 public class Boomerang: Bullet
 {
@@ -20,7 +19,11 @@ public class Boomerang: Bullet
     }
     protected override bool IsFinished()
     {
+        if(owner.IsDead) return true;
         return isReturning&&(owner.TF.position-TF.position).sqrMagnitude<.05f;
     }
-    
+    protected override void OnHitObstacle()
+    {
+        isReturning = true;
+    }
 }

@@ -16,5 +16,5 @@ public class Constatnts
     public const float MOVE_THRESHOLD = .01f;
     public const float BOT_DESPAWN_DELAY =1.2f;
     public const int SPAWN_TRY_COUNT=20;
-    
+    public const int LAYER_OBSTACLE = 10;
 }

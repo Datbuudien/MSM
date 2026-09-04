@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 305009423}
   - component: {fileID: 305009424}
   - component: {fileID: 305009425}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackRangeBooster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 321882645}
   - component: {fileID: 321882646}
   - component: {fileID: 321882647}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackSpeedBooster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c8854cd95ef5e4498abff12f348c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  offset: {x: 0, y: 10, z: -8}
+  offset: {x: 0, y: 12, z: -10}
   tf: {fileID: 1023829715}
   smoothTime: 0.5
 --- !u!114 &330585549
@@ -595,9 +595,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1588737482}
     m_Modifications:
+    - target: {fileID: 1232137940631858, guid: 116e8a694478f194a81a0a807c125385, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303207959553220, guid: 116e8a694478f194a81a0a807c125385, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718126260448238, guid: 116e8a694478f194a81a0a807c125385, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1800087255987448, guid: 116e8a694478f194a81a0a807c125385, type: 3}
       propertyPath: m_Name
       value: ShieldPowerupIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800087255987448, guid: 116e8a694478f194a81a0a807c125385, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4967023547685636, guid: 116e8a694478f194a81a0a807c125385, type: 3}
       propertyPath: m_LocalPosition.x
@@ -680,7 +696,7 @@ GameObject:
   - component: {fileID: 360599780}
   - component: {fileID: 360599781}
   - component: {fileID: 360599782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RandomBooster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game::LevelManager
   player: {fileID: 1985819195}
   level:
-    totalsCharacter: 0100000002000000
+    totalsCharacter: 0200000004000000
 --- !u!4 &379087058
 Transform:
   m_ObjectHideFlags: 0
@@ -984,6 +1000,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExclamationPowerupIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 1575598268211844, guid: 55fc995ff3213b24b8a11aced399a9bd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1739905796306808, guid: 55fc995ff3213b24b8a11aced399a9bd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769225447063102, guid: 55fc995ff3213b24b8a11aced399a9bd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819272199685466, guid: 55fc995ff3213b24b8a11aced399a9bd, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4737146896388880, guid: 55fc995ff3213b24b8a11aced399a9bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1129,9 +1161,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 360599780}
     m_Modifications:
+    - target: {fileID: 1048311386130298, guid: 0550d3f13df6a9c40a4e81b805126eba, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1244067120930738, guid: 0550d3f13df6a9c40a4e81b805126eba, type: 3}
       propertyPath: m_Name
       value: QuestionPowerupIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244067120930738, guid: 0550d3f13df6a9c40a4e81b805126eba, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549995663684918, guid: 0550d3f13df6a9c40a4e81b805126eba, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828581923071370, guid: 0550d3f13df6a9c40a4e81b805126eba, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4451582229775276, guid: 0550d3f13df6a9c40a4e81b805126eba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1222,7 +1270,7 @@ GameObject:
   - component: {fileID: 1205085632}
   - component: {fileID: 1205085633}
   - component: {fileID: 1205085634}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RandomWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1287,9 +1335,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1974512660}
     m_Modifications:
+    - target: {fileID: 1050979838010344, guid: 009ed1d7f3b1596429d4ec06052861d7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1174163932462940, guid: 009ed1d7f3b1596429d4ec06052861d7, type: 3}
       propertyPath: m_Name
       value: SpeedPowerupIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174163932462940, guid: 009ed1d7f3b1596429d4ec06052861d7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285716473129584, guid: 009ed1d7f3b1596429d4ec06052861d7, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634220372338384, guid: 009ed1d7f3b1596429d4ec06052861d7, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4176666886096962, guid: 009ed1d7f3b1596429d4ec06052861d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1430,9 +1494,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 305009423}
     m_Modifications:
+    - target: {fileID: 1056256003855726, guid: 5848ac0f7181657439c361fda7ec54e0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315574070042146, guid: 5848ac0f7181657439c361fda7ec54e0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458248142167220, guid: 5848ac0f7181657439c361fda7ec54e0, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1873392800473706, guid: 5848ac0f7181657439c361fda7ec54e0, type: 3}
       propertyPath: m_Name
       value: AmmoPowerupIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873392800473706, guid: 5848ac0f7181657439c361fda7ec54e0, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4096256242859716, guid: 5848ac0f7181657439c361fda7ec54e0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1527,6 +1607,10 @@ PrefabInstance:
     - target: {fileID: 1316344242940574, guid: 932b3807536acd049a86de16b7d8f278, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577139508592068, guid: 932b3807536acd049a86de16b7d8f278, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.962
       objectReference: {fileID: 0}
     - target: {fileID: 4881640905510078, guid: 932b3807536acd049a86de16b7d8f278, type: 3}
       propertyPath: m_LocalScale.x
@@ -1631,6 +1715,12 @@ MonoBehaviour:
   - prefab: {fileID: 3652238240193177425, guid: c406e1d0fd4ebbf4ba8ad0957678a235, type: 3}
     amount: 10
     root: {fileID: 1517935804}
+  - prefab: {fileID: 1145838083528938762, guid: 91c69c02356706542b189a00add5e559, type: 3}
+    amount: 10
+    root: {fileID: 1517935804}
+  - prefab: {fileID: 8523679681180603791, guid: 7cbdcaf82a8967046bf148da976a8add, type: 3}
+    amount: 10
+    root: {fileID: 1517935804}
 --- !u!4 &1517935804
 Transform:
   m_ObjectHideFlags: 0
@@ -1654,9 +1744,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 321882645}
     m_Modifications:
+    - target: {fileID: 1402260189557956, guid: 590d5f0d3f2ccff47969f621a4287c60, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791960443616766, guid: 590d5f0d3f2ccff47969f621a4287c60, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1813918038363784, guid: 590d5f0d3f2ccff47969f621a4287c60, type: 3}
       propertyPath: m_Name
       value: LightningPowerupIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1813918038363784, guid: 590d5f0d3f2ccff47969f621a4287c60, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1908523900391364, guid: 590d5f0d3f2ccff47969f621a4287c60, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4398182751576160, guid: 590d5f0d3f2ccff47969f621a4287c60, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1911,7 +2017,7 @@ GameObject:
   - component: {fileID: 1588737482}
   - component: {fileID: 1588737483}
   - component: {fileID: 1588737484}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShieldBooster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,7 +2383,7 @@ GameObject:
   - component: {fileID: 1974512660}
   - component: {fileID: 1974512661}
   - component: {fileID: 1974512662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MoveSpeedBooster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2444,7 +2550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6667187403782079716, guid: 557c9aed91d9d0c418914016df2e807f, type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

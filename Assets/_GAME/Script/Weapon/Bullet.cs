@@ -28,10 +28,15 @@ public abstract class Bullet : GameUnit
     protected virtual bool IsFinished()=> (TF.position-StartPos).sqrMagnitude>sqrRange;
     void OnTriggerEnter(Collider other)
     {
-        if(CharacterRegistry.TryGet(other,out Character victim) ==false) return;
+        if(CharacterRegistry.TryGet(other,out Character victim) == false)
+        {
+            if(other.gameObject.layer != Constatnts.LAYER_OBSTACLE) return;
+            OnHitObstacle();
+            return;
+        }
         if(victim==owner) return;
         victim.OnHit(owner);
         HBPools.Despawn(this);
     }
-
+    protected virtual void OnHitObstacle()=> HBPools.Despawn(this);
 }

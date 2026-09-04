@@ -5,6 +5,6 @@ public class ChangeWeaponEffect:BoosterEffect
 {
     public override bool TryApply(Character c)
     {
-        return false;
+        return c.ChangeRandomWeapon();
     }
 }

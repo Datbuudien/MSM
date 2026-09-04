@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Knife
   type: 1
-  speed: 6
+  speed: 7
 --- !u!136 &5032595243479130149
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ CapsuleCollider:
   m_Radius: 0.065
   m_Height: 0.573712
   m_Direction: 2
-  m_Center: {x: 0.339, y: 1.0439, z: 0.12224573}
+  m_Center: {x: 0, y: 0, z: 0.1945}
 --- !u!54 &5542528430688438208
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,15 +117,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecd6cb62ed8350e498f9e25d15d9caa3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.339
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecd6cb62ed8350e498f9e25d15d9caa3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.04399
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecd6cb62ed8350e498f9e25d15d9caa3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.07225001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ecd6cb62ed8350e498f9e25d15d9caa3, type: 3}
       propertyPath: m_LocalRotation.w

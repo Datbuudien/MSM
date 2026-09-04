@@ -9,12 +9,12 @@ public abstract class Character : GameUnit
     [SerializeField]private float speed=.5f;
     [SerializeField]private float roateSpeed =.5f;
     [SerializeField] private Transform throwPoint;
-    [SerializeField]protected WeaponHand weaponHand;
     [SerializeField]private float attackSpeed =1f;
     [SerializeField]private float attackRange =1f;
     [SerializeField]private TargetDetector detector;
+    [SerializeField]private WeaponHand[] weaponHands;
 
-
+    protected WeaponHand weaponHand;
     private string currentAnim=Constatnts.ANIM_IDE;
     private bool isMoving;
     private bool isAttacking;
@@ -29,7 +29,7 @@ public abstract class Character : GameUnit
     public bool HasShield => hasShield;
     public bool IsDead=>isDead;
 
-
+    private int currentWeaponIndex;
     private readonly List<Character> targets = new List<Character>();
     private readonly List<ActiveEffect> activeEffects= new List<ActiveEffect>();
     private readonly float [] statMultipliers = new float[(int)StatType.Count];
@@ -61,7 +61,7 @@ public abstract class Character : GameUnit
         isMoving = false;
         isAttacking=false;
         ChangeAnim(Constatnts.ANIM_IDE);
-        weaponHand.SetVisible(true);
+        SetWeapon(0);
         
     }
     protected virtual void OnUpdate(){}
@@ -228,5 +228,21 @@ public abstract class Character : GameUnit
         hasShield = false;
         for(int i=0;i<statMultipliers.Length;i++) statMultipliers[i]=1f;
         RefreshAttackRange();
+    }
+    public bool ChangeRandomWeapon()
+    {
+        if(isDead) return false;
+        if(weaponHands.Length <2) return false;
+        int index = Random.Range(0,weaponHands.Length);
+        if(index==currentWeaponIndex) index = (index+1)%weaponHands.Length;
+        SetWeapon(index);
+        return true;
+    }
+    private void SetWeapon(int index)
+    {
+        for(int i=0;i<weaponHands.Length;i++) weaponHands[i].gameObject.SetActive(i==index);
+        currentWeaponIndex=index;
+        weaponHand=weaponHands[index];
+        weaponHand.SetVisible(true);
     }
 }

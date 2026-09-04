@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 3436480498359379705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.32, y: -0.186, z: 1.431}
+  m_LocalPosition: {x: 0.019, y: 0.858, z: 1.359}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -658,10 +658,11 @@ MonoBehaviour:
   speed: 3
   roateSpeed: 5
   throwPoint: {fileID: 352459809548446440}
-  weaponHand: {fileID: 4295676884424192670}
   attackSpeed: 1
   attackRange: 2
   detector: {fileID: 8598074803995425630}
+  weaponHands:
+  - {fileID: 4295676884424192670}
   agent: {fileID: 3868232867332045098}
 --- !u!195 &3868232867332045098
 NavMeshAgent:
