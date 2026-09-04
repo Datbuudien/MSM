@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Game::RotateComponent
   tf: {fileID: 1947756022805218296}
-  speedRotation: 10
+  speedRotation: 1080
 --- !u!1001 &1947756022804830584
 PrefabInstance:
   m_ObjectHideFlags: 0
