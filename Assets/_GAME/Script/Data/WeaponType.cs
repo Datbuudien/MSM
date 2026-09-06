@@ -1,6 +1,1 @@
-using UnityEngine;
-
-public class WeaponType
-{
-    
-}
+public enum WeaponType { None = 0, Knife = 1, Hammer = 2, Boomerang = 3 }

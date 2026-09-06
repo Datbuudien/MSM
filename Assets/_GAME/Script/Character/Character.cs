@@ -13,6 +13,9 @@ public abstract class Character : GameUnit
     [SerializeField]private float attackRange =1f;
     [SerializeField]private TargetDetector detector;
     [SerializeField]private WeaponHand[] weaponHands;
+    [SerializeField] private Transform hatPoint;
+    [SerializeField] private Transform accessoryPoint;
+    [SerializeField] private SkinnedMeshRenderer pantRender;
 
     protected WeaponHand weaponHand;
     private string currentAnim=Constatnts.ANIM_IDE;
@@ -36,7 +39,8 @@ public abstract class Character : GameUnit
     private float CurrentSpeed=>speed*statMultipliers[(int)StatType.MoveSpeed];
     private float CurrentAttackSpeed=>attackSpeed*statMultipliers[(int)StatType.AttackSpeed];
     private float CurrentAttackRange=>attackRange*statMultipliers[(int)StatType.AttackRange];
-    
+    private GameObject currentHat;
+    private GameObject currentAccessory;
     private struct ActiveEffect
     {
         public TimedBoosterEffect effect;
@@ -244,5 +248,37 @@ public abstract class Character : GameUnit
         currentWeaponIndex=index;
         weaponHand=weaponHands[index];
         weaponHand.SetVisible(true);
+    }
+    public bool ChangeWeapon(WeaponType t)
+    {
+        WeaponItem item = DataManager.Ins.WeaponData.GetItem(t);
+        if(item==null) return false;
+        for(int i = 0; i < weaponHands.Length; i++)
+        {
+            if(weaponHands[i].poolType != item.BulletPool) continue;
+            SetWeapon(i);
+            return true;
+        }
+        return false;
+    }
+    public void ChangeHat(HatType t)
+    {
+        if(currentHat != null) Destroy(currentHat);
+        HatItem item = DataManager.Ins.HatData.GetItem(t);
+        if(item==null || item.Prefab==null) return;
+        currentHat=Instantiate(item.Prefab,hatPoint,false);
+    }
+    public void ChangeAccessory(AccessoryType t)
+    {
+        if(currentAccessory != null) Destroy(currentAccessory);
+        AccessoryItem item = DataManager.Ins.AccessoryData.GetItem(t);
+        if(item==null || item.Prefab==null) return;
+        currentAccessory=Instantiate(item.Prefab,accessoryPoint,false);       
+    }
+    public void ChangePant(PantType t)
+    {
+        PantItem item = DataManager.Ins.PantData.GetItem(t);
+        if(item==null || item.Mat==null) return;
+        pantRender.sharedMaterial = item.Mat;
     }
 }

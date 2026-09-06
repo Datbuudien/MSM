@@ -1,6 +1,1 @@
-using UnityEngine;
-
-public class AccessoryType
-{
-    
-}
+public enum AccessoryType { None = 0, Shield = 1, ShieldRound = 2 }
