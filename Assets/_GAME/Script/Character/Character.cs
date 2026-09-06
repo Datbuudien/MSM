@@ -25,7 +25,6 @@ public abstract class Character : GameUnit
     private float attackTimer;
     private float tmp;
     private bool isDead;
-    public float Speed => speed;
     public bool IsMoving => isMoving;
     public bool IsAttacking => isAttacking;
     public bool HasTarget=> GetNearestTarget() !=null;
@@ -35,22 +34,32 @@ public abstract class Character : GameUnit
     private int currentWeaponIndex;
     private readonly List<Character> targets = new List<Character>();
     private readonly List<ActiveEffect> activeEffects= new List<ActiveEffect>();
-    private readonly float [] statMultipliers = new float[(int)StatType.Count];
-    private float CurrentSpeed=>speed*statMultipliers[(int)StatType.MoveSpeed];
-    private float CurrentAttackSpeed=>attackSpeed*statMultipliers[(int)StatType.AttackSpeed];
-    private float CurrentAttackRange=>attackRange*statMultipliers[(int)StatType.AttackRange];
+    private readonly float [] statMultipliers = new float[(int)StatType.Count]; // boots
+    private float CurrentSpeed => GetStat(StatType.MoveSpeed, speed);
+    private float CurrentAttackSpeed => GetStat(StatType.AttackSpeed, attackSpeed);
+    public float CurrentAttackRange => GetStat(StatType.AttackRange, attackRange);
+    private readonly float [] equipAdd = new float [(int)StatType.Count];
+    private readonly float [] equipMul = new float [(int)StatType.Count];
     private GameObject currentHat;
     private GameObject currentAccessory;
+    private HatItem currentHatItem;
+    private PantItem currentPantItem;
+    private AccessoryItem currentAccessoryItem;
+    private WeaponItem currentWeaponItem;
     private struct ActiveEffect
     {
         public TimedBoosterEffect effect;
-        public float remmaining;
+        public float remaining;
     }
     protected virtual void Awake()
     {
         tmp = Constatnts.MOVE_THRESHOLD*Constatnts.MOVE_THRESHOLD;
         CharacterRegistry.Register(coll,this);
-        //ClearEffects();
+        for (int i = 0; i < (int)StatType.Count; i++)
+        {
+            statMultipliers[i] = 1f;
+            equipMul[i] = 1f;
+        }
     }
     public abstract void Move();
     public virtual void OnInit()
@@ -195,10 +204,10 @@ public abstract class Character : GameUnit
         for(int i = 0; i < activeEffects.Count; i++)
         {
             if(activeEffects[i].effect !=effect) continue;
-            activeEffects[i] = new ActiveEffect{effect=effect,remmaining=duration};
+            activeEffects[i] = new ActiveEffect{effect=effect,remaining=duration};
             return true;
         }
-        activeEffects.Add(new ActiveEffect{effect=effect,remmaining=duration});
+        activeEffects.Add(new ActiveEffect{effect=effect,remaining=duration});
         effect.OnBegin(this);
         return true;
     }
@@ -213,8 +222,8 @@ public abstract class Character : GameUnit
         for(int i = activeEffects.Count - 1; i >= 0; i--)
         {
             ActiveEffect ae = activeEffects[i];
-            ae.remmaining -= Time.deltaTime;
-            if(ae.remmaining <= 0f)
+            ae.remaining -= Time.deltaTime;
+            if(ae.remaining <= 0f)
             {
                 activeEffects.RemoveAt(i);
                 ae.effect.OnEnd(this);
@@ -249,36 +258,72 @@ public abstract class Character : GameUnit
         weaponHand=weaponHands[index];
         weaponHand.SetVisible(true);
     }
-    public bool ChangeWeapon(WeaponType t)
+    private void ApplyBonuses<T>(ShopItemData<T> item)  where T : System.Enum
     {
-        WeaponItem item = DataManager.Ins.WeaponData.GetItem(t);
+        if(item==null || item.Bonuses ==null) return;
+        for(int i = 0; i < item.Bonuses.Length; i++)
+        {
+            StatBonus bonus = item.Bonuses[i];
+            int index = (int) bonus.Stat;
+            equipAdd[index] +=bonus.FlatBonus;
+            equipMul[index] += bonus.PercentBonus;
+        }
+    }
+    private void RecalculateEquipStats()
+    {
+        for(int i = 0; i < equipAdd.Length; i++)
+        {
+            equipAdd[i]=0f;
+            equipMul[i]=1f;
+        }
+        ApplyBonuses(currentHatItem);
+        ApplyBonuses(currentAccessoryItem);
+        ApplyBonuses(currentPantItem);
+        ApplyBonuses(currentWeaponItem);
+        RefreshAttackRange();
+    }
+    public bool ChangeWeapon(WeaponType type)
+    {
+        WeaponItem item = DataManager.Ins.WeaponData.GetItem(type);
         if(item==null) return false;
         for(int i = 0; i < weaponHands.Length; i++)
         {
             if(weaponHands[i].poolType != item.BulletPool) continue;
+            currentWeaponItem = item;
             SetWeapon(i);
+            RecalculateEquipStats();
             return true;
         }
         return false;
     }
-    public void ChangeHat(HatType t)
+    public void ChangeHat(HatType type)
     {
-        if(currentHat != null) Destroy(currentHat);
-        HatItem item = DataManager.Ins.HatData.GetItem(t);
-        if(item==null || item.Prefab==null) return;
-        currentHat=Instantiate(item.Prefab,hatPoint,false);
+        if(currentHat!=null) Destroy(currentHat);
+        currentHat = null;
+        currentHatItem = DataManager.Ins.HatData.GetItem(type);
+        RecalculateEquipStats();
+        if(currentHatItem==null || currentHatItem.Prefab==null) return;
+        currentHat=Instantiate(currentHatItem.Prefab,hatPoint,false);
     }
-    public void ChangeAccessory(AccessoryType t)
+    public void ChangeAccessory(AccessoryType type)
     {
         if(currentAccessory != null) Destroy(currentAccessory);
-        AccessoryItem item = DataManager.Ins.AccessoryData.GetItem(t);
-        if(item==null || item.Prefab==null) return;
-        currentAccessory=Instantiate(item.Prefab,accessoryPoint,false);       
+        currentAccessory = null;
+        currentAccessoryItem = DataManager.Ins.AccessoryData.GetItem(type);
+        RecalculateEquipStats();
+        if(currentAccessoryItem==null || currentAccessoryItem.Prefab==null) return;
+        currentAccessory=Instantiate(currentAccessoryItem.Prefab,accessoryPoint,false);
     }
-    public void ChangePant(PantType t)
+    public void ChangePant(PantType type)
     {
-        PantItem item = DataManager.Ins.PantData.GetItem(t);
-        if(item==null || item.Mat==null) return;
-        pantRender.sharedMaterial = item.Mat;
+        currentPantItem = DataManager.Ins.PantData.GetItem(type);
+        RecalculateEquipStats();
+        if(currentPantItem==null || currentPantItem.Mat==null) return;
+        pantRender.sharedMaterial = currentPantItem.Mat;
+    }
+    private float GetStat(StatType stat,float baseValue)
+    {
+        int i= (int) stat;
+        return (baseValue+equipAdd[i])*equipMul[i]*statMultipliers[i];    // chi so cong them duoc tinh theo ct x= (x+add)*multi*boost
     }
 }
