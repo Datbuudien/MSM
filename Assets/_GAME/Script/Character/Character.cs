@@ -99,6 +99,7 @@ public abstract class Character : GameUnit
         LookAtTarget(target);
         attackTimer = 1f / CurrentAttackSpeed;
         isAttacking = true;
+        anim.SetFloat(Constatnts.ANIM_ATTACK_SPEED, CurrentAttackSpeed);
         ChangeAnim(Constatnts.ANIM_ATTACK);
     }
     public void Throw()

@@ -17,4 +17,5 @@ public class Constatnts
     public const float BOT_DESPAWN_DELAY =1.2f;
     public const int SPAWN_TRY_COUNT=20;
     public const int LAYER_OBSTACLE = 10;
+    public const string ANIM_ATTACK_SPEED = "AttackSpeed";
 }

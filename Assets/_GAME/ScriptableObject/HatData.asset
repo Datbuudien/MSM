@@ -21,60 +21,69 @@ MonoBehaviour:
   - Type: 1
     Cost: 100
     Icon: {fileID: 0}
-    Bonuses: []
+    Bonuses:
+    - Stat: 0
+      FlatBonus: 2
+      PercentBonus: 0
     Prefab: {fileID: 6590125509693521120, guid: 2fbfc2273a5a74649b01dde9598dbb5d, type: 3}
-  - Type: 0
-    Cost: 0
+  - Type: 2
+    Cost: 150
+    Icon: {fileID: 0}
+    Bonuses:
+    - Stat: 0
+      FlatBonus: 2
+      PercentBonus: 0
+    - Stat: 1
+      FlatBonus: 0
+      PercentBonus: 1
+    Prefab: {fileID: 8187302180543066885, guid: 3c79048668db596469ac90dd6d3f7b6e, type: 3}
+  - Type: 3
+    Cost: 200
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 3230856160548527558, guid: 59fd9788198346a4e9db5e4630e97c0a, type: 3}
+  - Type: 4
+    Cost: 75
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 9166040700579069407, guid: 4df9f3ad5679f724fb18fef614d2b48e, type: 3}
+  - Type: 5
+    Cost: 50
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 3160547272936189831, guid: a7fccc479a2d1d74ab85dcf29a1eb5b4, type: 3}
+  - Type: 6
+    Cost: 300
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 4921347558963470421, guid: 3d8b99911bbaedb479b3e0325123385b, type: 3}
+  - Type: 7
+    Cost: 275
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 1276781687944821140, guid: c484c957ef4a55d4b9cb35d3552c1fe4, type: 3}
+  - Type: 8
+    Cost: 325
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 5116953640740472380, guid: bab61afb07d9eef48ac0bdd23b1f82f3, type: 3}
+  - Type: 9
+    Cost: 350
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 9081511703014643678, guid: cf0051276fcdea541a4b3c47bee13d8c, type: 3}
+  - Type: 12
+    Cost: 250
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 5527916638820028364, guid: eb850f85498bd2541ba235b70bd22e41, type: 3}
+  - Type: 10
+    Cost: 450
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
+    Prefab: {fileID: 8169917519492874065, guid: 5febcbfbf5801634c8eedf761b16eae6, type: 3}
+  - Type: 11
+    Cost: 25
     Icon: {fileID: 0}
     Bonuses: []
-    Prefab: {fileID: 0}
-  - Type: 0
-    Cost: 0
-    Icon: {fileID: 0}
-    Bonuses: []
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 1126292054768202224, guid: 1fdf79a082c210b47984623c474a0ebb, type: 3}

@@ -12,4 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1fd7d6f67078a4183d1f34ea7b8e51, type: 3}
   m_Name: PantData
   m_EditorClassIdentifier: Game::PantData
-  items: []
+  items:
+  - Type: 0
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 1
+    Cost: 450
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 2100000, guid: d137cf59893a72c4a8be6a52ad8c55b0, type: 2}
+  - Type: 2
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 3
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 4
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 5
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 6
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 7
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 8
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
+  - Type: 9
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    Mat: {fileID: 0}
