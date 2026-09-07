@@ -12,4 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8cdf0b66daa734f918888c9217ebba, type: 3}
   m_Name: WeaponData
   m_EditorClassIdentifier: Game::WeaponData
-  items: []
+  items:
+  - Type: 1
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    BulletPool: 1
+  - Type: 2
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    BulletPool: 2
+  - Type: 3
+    Cost: 0
+    Icon: {fileID: 0}
+    Bonuses: []
+    BulletPool: 3

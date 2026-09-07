@@ -19,10 +19,10 @@ public class LevelManager : Singleton<LevelManager>
         level.StartStage(0);
         GameManager.ChangeState(GameState.GamePlay);
         SpawnUntilFull();
-        player.ChangeHat(HatType.Crown);
-        player.ChangePant(PantType.Rainbow);
-        player.ChangeAccessory(AccessoryType.Shield);
-        player.ChangeWeapon(WeaponType.Hammer);
+        // player.ChangeHat(HatType.Crown);
+        // player.ChangePant(PantType.Rainbow);
+        // player.ChangeAccessory(AccessoryType.Shield);
+        // player.ChangeWeapon(WeaponType.Hammer);
     }
     public void OnBotDeath()
     {

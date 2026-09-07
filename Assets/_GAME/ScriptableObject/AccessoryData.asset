@@ -18,3 +18,18 @@ MonoBehaviour:
     Icon: {fileID: 0}
     Bonuses: []
     Prefab: {fileID: 0}
+  - Type: 1
+    Cost: 200
+    Icon: {fileID: 0}
+    Bonuses: []
+    Prefab: {fileID: 2908196178697615592, guid: 2ffe4b6ba8ef7514aac650ac28072ba2, type: 3}
+  - Type: 2
+    Cost: 300
+    Icon: {fileID: 0}
+    Bonuses: []
+    Prefab: {fileID: 1948215810463845318, guid: 6c679c8b5c2bebe40ac929300b31f0ad, type: 3}
+  - Type: 3
+    Cost: 400
+    Icon: {fileID: 0}
+    Bonuses: []
+    Prefab: {fileID: 3783811762573821538, guid: ed49382e67ce62240a50e574ae8410ae, type: 3}
