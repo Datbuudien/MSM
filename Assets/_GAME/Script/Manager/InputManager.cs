@@ -38,5 +38,5 @@ public class InputManager : Singleton<InputManager>
             default: return null;
         }
     }
-    
+    public void SetJoyStick(FloatingJoyStick joyStick)=>joyInput.SetJoyStick(joyStick); // keo insspector joyinput la no se tu gan joystick khi ma ta goi canvas   
 }

@@ -18,6 +18,7 @@ public class LevelManager : Singleton<LevelManager>
         player.OnInit();
         level.StartStage(0);
         GameManager.ChangeState(GameState.GamePlay);
+        UIManager.Ins.OpenUI<CanvasGameplay>();
         SpawnUntilFull();
         // player.ChangeHat(HatType.Crown);
         // player.ChangePant(PantType.Rainbow);
