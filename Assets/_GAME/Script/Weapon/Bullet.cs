@@ -17,6 +17,7 @@ public abstract class Bullet : GameUnit
     }
     void Update()
     {
+        if(GameManager.CanPlay==false) return;
         Move();
         if (IsFinished())
         {

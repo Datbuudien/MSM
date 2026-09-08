@@ -1,46 +1,40 @@
-using System;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Player player;
     [SerializeField] private Level level;
-    void Start()
-    {
-        OnLoadLevel();
-    }
-
-    // Update is called once per frame
-    public void OnLoadLevel()
+    [SerializeField] private GameObject arena;
+    [SerializeField] private GameObject menuBackdrop;
+    public void OnResetLevel()
     {
         BotManager.Ins.CollectAll();
         player.OnInit();
+        player.SetKinematic(true);
+        arena.SetActive(false);
+        menuBackdrop.SetActive(true);
+    }
+    public void OnStartGame()
+    {
         level.StartStage(0);
-        GameManager.ChangeState(GameState.GamePlay);
-        UIManager.Ins.OpenUI<CanvasGameplay>();
         SpawnUntilFull();
-        // player.ChangeHat(HatType.Crown);
-        // player.ChangePant(PantType.Rainbow);
-        // player.ChangeAccessory(AccessoryType.Shield);
-        // player.ChangeWeapon(WeaponType.Hammer);
+        player.SetKinematic(false);
+        level.StartStage(0);
+        SpawnUntilFull();
     }
     public void OnBotDeath()
     {
         SpawnUntilFull();
-        if(level.IsStageCleared(BotManager.Ins.AliveCount)==false) return;
+        if (level.IsStageCleared(BotManager.Ins.AliveCount) == false) return;
         OnStageCleared();
     }
-    public void OnPlayerDeath()
-    {
-        GameManager.ChangeState(GameState.Finish);
-        //TODO: UI loose
-    }
+    public void OnPlayerDeath() => GameManager.ChangeState(GameState.Lose);
+
     public void SpawnUntilFull()
     {
         while (level.CanSpawnMore(BotManager.Ins.AliveCount))
         {
-            if(BotManager.Ins.SpawnBot()==false) return;    
+            if (BotManager.Ins.SpawnBot() == false) return;
             level.OnBotSpawned();
         }
     }
@@ -48,15 +42,11 @@ public class LevelManager : Singleton<LevelManager>
     {
         if (level.HasNextStage == false)
         {
-            OnWin(); 
+            GameManager.ChangeState(GameState.Win);
             return;
         }
-        level.StartStage(level.CurrentStage+1);
+        level.StartStage(level.CurrentStage + 1);
         SpawnUntilFull();
     }
-    private void OnWin()
-    {
-        GameManager.ChangeState(GameState.Finish);
-        //TODO win
-    }
+
 }

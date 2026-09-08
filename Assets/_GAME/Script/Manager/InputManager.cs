@@ -12,7 +12,7 @@ public class InputManager : Singleton<InputManager>
     {
         get
         {
-            if(IsEnableInput && currentInput !=null) return currentInput.MoveDirection;
+            if(IsEnableInput) return currentInput.MoveDirection;
             else return Vector3.zero;
         }
     }

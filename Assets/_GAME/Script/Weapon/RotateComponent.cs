@@ -11,6 +11,7 @@ public class RotateComponent : MonoBehaviour
     }
     void Update()
     {
+        if(GameManager.CanPlay==false) return;
         z = (z+speedRotation*Time.deltaTime)%360f;     
         tf.localRotation= Quaternion.Euler(270,0,z);
     }

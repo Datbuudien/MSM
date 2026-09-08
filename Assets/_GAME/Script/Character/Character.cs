@@ -30,7 +30,7 @@ public abstract class Character : GameUnit
     public bool HasTarget=> GetNearestTarget() !=null;
     public bool HasShield => hasShield;
     public bool IsDead=>isDead;
-
+    public void SetKinematic(bool value) => rb.isKinematic = value;
     private int currentWeaponIndex;
     private readonly List<Character> targets = new List<Character>();
     private readonly List<ActiveEffect> activeEffects= new List<ActiveEffect>();
@@ -81,6 +81,7 @@ public abstract class Character : GameUnit
     void Update()
     {
         if(isDead) return;
+        if(GameManager.CanPlay==false) return;
         UpdateEffects();
         OnUpdate();
         attackTimer -= Time.deltaTime;
@@ -89,6 +90,7 @@ public abstract class Character : GameUnit
     void FixedUpdate()
     {
         if(isDead) return;
+        if(GameManager.CanPlay==false) return;
         Move();
     }
     public void Attack()
@@ -191,6 +193,17 @@ public abstract class Character : GameUnit
             return;
         }
         OnDeath();
+    }
+    public void OnPause()
+    {
+        anim.speed = 0f;
+        if(rb.isKinematic) return;      // xac chet da kinematic, set velocity la Unity warning
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+    public void OnResume()
+    {
+        anim.speed = 1f;                
     }
     protected virtual void OnDeath()
     {

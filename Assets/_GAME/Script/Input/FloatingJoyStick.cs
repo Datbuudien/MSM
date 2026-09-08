@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
@@ -50,6 +49,7 @@ public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler
     }
     public void OnPointerDown(PointerEventData e)
     {
+        if(GameManager.CanPlay==false) return;
         if(pointerId != CHECK) return;
         pointerId = e.pointerId;
         ShowJoyStick();
@@ -60,6 +60,7 @@ public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler
     public void OnDrag(PointerEventData e)
     {
         if(e.pointerId != pointerId) return;
+        if(GameManager.CanPlay==false) { HideJoyStick(); return; }
         Vector2 pos;
         if(RectTransformUtility.ScreenPointToLocalPointInRectangle(bg,e.position, e.pressEventCamera, out pos))
         {
@@ -77,5 +78,10 @@ public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler
         handle.anchoredPosition = Vector2.zero;
         pointerId = CHECK;
         HideJoyStick();
+    }
+    void OnDisable()
+    {
+        inputVector = Vector2.zero;
+        pointerId=CHECK;
     }
 }
