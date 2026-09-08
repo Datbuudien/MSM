@@ -61,6 +61,7 @@ public class UICanvas : MonoBehaviour
     }
     public virtual void CloseDirectly()
     {
+        CloseAllPopup();        // dong canvas la dong luon popup con: chung KHONG nam trong tu dien cua UIManager
         UIManager.Ins.RemoveBackUI(this);
         gameObject.SetActive(false);
         if (isDestroyOnClose) Destroy(gameObject);
@@ -109,9 +110,6 @@ public class UICanvas : MonoBehaviour
         {
             if (popups[i] is T tmp) return tmp;
         }
-#if UNITY_EDITOR
-        Debug.LogError($"Chua keo popup {typeof(T).Name} vao o Popups cua {GetType().Name}");
-#endif
         return null;
     }
     public T OpenPopup<T>() where T : UICanvas

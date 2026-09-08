@@ -25,12 +25,13 @@ public abstract class Character : GameUnit
     private float attackTimer;
     private float tmp;
     private bool isDead;
+    private Character lastAttacker;
+    protected Character LastAttacker => lastAttacker;
     public bool IsMoving => isMoving;
     public bool IsAttacking => isAttacking;
     public bool HasTarget=> GetNearestTarget() !=null;
     public bool HasShield => hasShield;
     public bool IsDead=>isDead;
-    public void SetKinematic(bool value) => rb.isKinematic = value;
     private int currentWeaponIndex;
     private readonly List<Character> targets = new List<Character>();
     private readonly List<ActiveEffect> activeEffects= new List<ActiveEffect>();
@@ -65,7 +66,10 @@ public abstract class Character : GameUnit
     public virtual void OnInit()
     {
         isDead=false;
+        lastAttacker = null;
         rb.isKinematic=false;
+        rb.linearVelocity = Vector3.zero;       // doi vi tri bang transform khong xoa velocity cu
+        rb.angularVelocity = Vector3.zero;
         coll.enabled=true;
         CancelInvoke();
         targets.Clear();
@@ -192,7 +196,19 @@ public abstract class Character : GameUnit
             hasShield=false;
             return;
         }
+        lastAttacker = c;
         OnDeath();
+    }
+    // Doi cho rigidbody: PHAI qua rb.position vi Physics.autoSyncTransforms dang TAT,
+    // gan transform.position khong day vi tri moi xuong physics engine ngay.
+    public void Teleport(Vector3 position, Quaternion rotation)
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.position = position;
+        rb.rotation = rotation;
+        TF.SetPositionAndRotation(position, rotation);
+        Physics.SyncTransforms();
     }
     public void OnPause()
     {

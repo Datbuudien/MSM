@@ -18,10 +18,10 @@ public class BotManager : Singleton<BotManager>
         bots.Add(bot);
         return true;
     }
-    public void OnDeath(Bot bot)
+    public void OnDeath(Bot bot, Character killer)
     {
         if(bots.Remove(bot)==false) return;
-        LevelManager.Ins.OnBotDeath();
+        LevelManager.Ins.OnBotDeath(killer);
     }
     public void CollectAll()
     {

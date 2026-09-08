@@ -15,4 +15,5 @@ public class Player: Character
     {
         range.SetRange(val);
     }
+    public void SetRangeVisible(bool check) => range.SetVisible(check);
 }

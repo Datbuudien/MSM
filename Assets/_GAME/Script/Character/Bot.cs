@@ -61,7 +61,7 @@ public class Bot:Character
     {
         base.OnDeath();
         StopMoving();
-        BotManager.Ins.OnDeath(this);
+        BotManager.Ins.OnDeath(this, LastAttacker);
         Invoke(nameof(DespawnSelf),Constatnts.BOT_DESPAWN_DELAY);
     }
     private void DespawnSelf()=>HBPools.Despawn(this);

@@ -18,4 +18,7 @@ public class Constatnts
     public const int SPAWN_TRY_COUNT=20;
     public const int LAYER_OBSTACLE = 10;
     public const string ANIM_ATTACK_SPEED = "AttackSpeed";
+    public const int GOLD_WIN_BASE = 50;
+    public const int GOLD_WIN_PER_LEVEL = 10;
+    public const int GOLD_PER_KILL = 5;
 }
