@@ -38,9 +38,11 @@ public class GameManager : Singleton<GameManager>
 
     public static void ChangeState(GameState state)
     {
-        Resume();               // roi trang thai la khong duoc de gi dong bang lai
+        // toan bo cu doi man xay ra DUNG LUC man hinh den kin
+        Resume();           // roi trang thai la khong duoc de gi dong bang lai
         gameState = state;
         Ins.OnStateChanged(state);
+        
     }
 
     private void OnStateChanged(GameState state)
