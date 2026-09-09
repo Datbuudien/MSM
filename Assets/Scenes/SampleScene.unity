@@ -435,10 +435,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   tf: {fileID: 1023829715}
   smoothTime: 0.5
-  gameplayOffset: {x: 0, y: 10, z: -12}
-  gameplayLookHeight: -2
-  menuOffset: {x: 0, y: 1.1, z: 5}
-  menuLookHeight: 1.2
+  offset: {x: 0, y: 10, z: -12}
+  lookHeight: 2
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Game::LevelManager
   player: {fileID: 1985819195}
   level:
-    totalsCharacter: 0200000004000000
+    totalsCharacter: 6400000064000000
   cameraFollow: {fileID: 330585548}
   arena: {fileID: 1331668750}
   playerSpawnPoint: {fileID: 1056747898}
@@ -828,7 +826,7 @@ MonoBehaviour:
   - {fileID: 8001993398437837681, guid: a2cb0aabdf4160f4aaaee9695fb47e8b, type: 3}
   - {fileID: 6184993781663670447, guid: 2e082baa62895e245bb11ec7ce723eab, type: 3}
   - {fileID: 3819388989016012917, guid: 67966748e2397794e8bc3754a11421bd, type: 3}
-  - {fileID: -5884724021627653848, guid: f6c007ecce8ff204c93fbbfcc2882542, type: 3}
+  - {fileID: 1500000042, guid: f6c007ecce8ff204c93fbbfcc2882542, type: 3}
   - {fileID: 3319935692843751566, guid: 3f6daf4a9db98584dbf5d9333c75804c, type: 3}
   - {fileID: -2389295994031841023, guid: 63e163cc7b3999e4594449687a01ccc5, type: 3}
   canvasParent: {fileID: 0}
@@ -1588,8 +1586,8 @@ Transform:
   m_GameObject: {fileID: 2027950917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.04, z: -16.2}
-  m_LocalScale: {x: 14.000001, y: 24.78, z: 14.000001}
+  m_LocalPosition: {x: 0, y: 1.72, z: -16.2}
+  m_LocalScale: {x: 14.500001, y: 25.665, z: 14.500001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 163679915}
@@ -1724,7 +1722,7 @@ Transform:
   m_GameObject: {fileID: 2085942852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1799,8 +1797,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6667187403782079716, guid: 557c9aed91d9d0c418914016df2e807f, type: 3}
+      propertyPath: roateSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667187403782079716, guid: 557c9aed91d9d0c418914016df2e807f, type: 3}
       propertyPath: attackRange
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667187403782079716, guid: 557c9aed91d9d0c418914016df2e807f, type: 3}
+      propertyPath: attackSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -25,6 +25,7 @@ public class LevelManager : Singleton<LevelManager>
         menuStage.SetActive(true);          // bat san DICH truoc
         cameraFollow.SetMenuView(true);
         player.OnInit();
+        ApplyPlayerEquipment();             // OnInit co SetWeapon(0), phai mac lai NGAY sau no
         player.SetRangeVisible(false);      // menu khong hien vong tam danh
         player.Teleport(menuStagePoint.position, Quaternion.identity);
         arena.SetActive(false);             // roi moi tat san CU
@@ -32,18 +33,40 @@ public class LevelManager : Singleton<LevelManager>
     public void OnStartGame()
     {
         BotManager.Ins.CollectAll();
-        arena.SetActive(true);              // bat san + NavMesh truoc khi spawn bot
-        cameraFollow.SetMenuView(false);
+        arena.SetActive(true);              // bat san + NavMesh truoc khi spawn bot     
         player.OnInit();
+        ApplyPlayerEquipment();             // GamePlay co 2 loi vao, ca hai deu phai mac do (KI-20)
         player.Teleport(playerSpawnPoint.position, Quaternion.identity);
+        cameraFollow.SetMenuView(false);
         player.SetRangeVisible(true);
         menuStage.SetActive(false);
         killCount = 0;
         level.StartStage(0);
         SpawnUntilFull();
     }
+    // Mac do that theo save. Goi sau OnInit() o MOI loi vao, va luc dong shop.
+    public void ApplyPlayerEquipment()
+    {
+        for(int c = 0; c < Constatnts.SHOP_CATEGORY_COUNT; c++)
+        {
+            ShopCategory category = (ShopCategory)c;
+            PreviewEquip(category, SaveManager.Ins.GetEquipped(category));
+        }
+    }
+    // Mac thu trong shop. O menu khong ai doc chi so nen khong can tach "mac hinh" voi "mac that".
+    public void PreviewEquip(ShopCategory category, int id)
+    {
+        switch(category)
+        {
+            case ShopCategory.Hat: player.ChangeHat((HatType)id); break;
+            case ShopCategory.Pant: player.ChangePant((PantType)id); break;
+            case ShopCategory.Accessory: player.ChangeAccessory((AccessoryType)id); break;
+            default: player.ChangeWeapon((WeaponType)id); break;
+        }
+    }
     public void OnBotDeath(Character killer)
     {
+        if (killer != null) killer.OnKill();  // bot giet duoc cung to len
         if (killer == player) killCount++;   // bot giet nhau thi khong tinh cong nguoi choi
         SpawnUntilFull();
         if (level.IsStageCleared(BotManager.Ins.AliveCount) == false) return;
@@ -62,7 +85,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         while (level.CanSpawnMore(BotManager.Ins.AliveCount))
         {
-            if (BotManager.Ins.SpawnBot() == false) return;
+            if (BotManager.Ins.SpawnBot(player.SizeLevel) == false) return;
             level.OnBotSpawned();
         }
     }

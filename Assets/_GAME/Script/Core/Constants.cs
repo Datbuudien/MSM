@@ -21,4 +21,10 @@ public class Constatnts
     public const int GOLD_WIN_BASE = 50;
     public const int GOLD_WIN_PER_LEVEL = 10;
     public const int GOLD_PER_KILL = 5;
+    public const int SHOP_CATEGORY_COUNT = 4;
+    public const string SHOP_LABEL_BUY = "BUY";
+    public const string SHOP_LABEL_EQUIP = "EQUIP";
+    public const string SHOP_LABEL_EQUIPPED = "EQUIPPED";
+    public const int SHOP_PAGE_SIZE = 9;              // 3 cot x 3 hang moi trang
+    public const string SHOP_STAT_NONE = "-";
 }

@@ -3,4 +3,5 @@ using UnityEngine;
 public class WeaponItem : ShopItemData<WeaponType>
 {
     public PoolType BulletPool;
+    public Material Mat;        // null la vu khi coi chuong
 }

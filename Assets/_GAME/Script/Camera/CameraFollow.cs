@@ -34,10 +34,15 @@ public class CameraFollow : MonoBehaviour
     public void SetMenuView(bool isMenu)
     {
         this.isMenu=isMenu;
+        if (isMenu)
+        {
+            transform.SetPositionAndRotation(menuPosition, menuRotation);
+            return;
+        }
         // offset = isMenu ? menuOffset : gameplayOffset;
         // lookHeight = isMenu ? menuLookHeight : gameplayLookHeight;
-        transform.position=menuPosition;
-        transform.rotation=menuRotation;
+        velocity = Vector3.zero;
+        transform.position = tf.position + offset;
     }
     
 

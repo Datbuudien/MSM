@@ -120,9 +120,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7964593005016163275}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 6184993781663670447}
+        m_TargetAssemblyTypeName: CanvasMainMenu, Game
+        m_MethodName: OnClickSetting
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -252,9 +252,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7964593005016163275}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 6184993781663670447}
+        m_TargetAssemblyTypeName: CanvasMainMenu, Game
+        m_MethodName: OnClickWeaponShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -804,9 +804,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7964593005016163275}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 6184993781663670447}
+        m_TargetAssemblyTypeName: CanvasMainMenu, Game
+        m_MethodName: OnClickShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

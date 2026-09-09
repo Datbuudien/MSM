@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Character : GameUnit
 {
+    public const int MAX_SIZE_LEVEL = 10;
+
     [SerializeField] private Rigidbody rb;
     [SerializeField]private Collider coll;
     [SerializeField] private Animator anim;
@@ -11,6 +13,8 @@ public abstract class Character : GameUnit
     [SerializeField] private Transform throwPoint;
     [SerializeField]private float attackSpeed =1f;
     [SerializeField]private float attackRange =1f;
+    [SerializeField]private float rangePerLevel =1f;     // moi cap size cong thang vao attackRange goc
+    [SerializeField]private float sizePerLevel =.1f;     // cap 10 => scale 1.9
     [SerializeField]private TargetDetector detector;
     [SerializeField]private WeaponHand[] weaponHands;
     [SerializeField] private Transform hatPoint;
@@ -41,6 +45,10 @@ public abstract class Character : GameUnit
     public float CurrentAttackRange => GetStat(StatType.AttackRange, attackRange);
     private readonly float [] equipAdd = new float [(int)StatType.Count];
     private readonly float [] equipMul = new float [(int)StatType.Count];
+    private readonly float [] levelAdd = new float [(int)StatType.Count];   // cap size, cong thang vao base
+    private int sizeLevel;
+    private int killSinceLevelUp;
+    public int SizeLevel => sizeLevel;
     private GameObject currentHat;
     private GameObject currentAccessory;
     private HatItem currentHatItem;
@@ -79,7 +87,7 @@ public abstract class Character : GameUnit
         isAttacking=false;
         ChangeAnim(Constatnts.ANIM_IDE);
         SetWeapon(0);
-        
+        SetSizeLevel(1);        // cap size la tien trinh trong MOT van, phai ve 1 moi lan hoi sinh
     }
     protected virtual void OnUpdate(){}
     void Update()
@@ -113,6 +121,7 @@ public abstract class Character : GameUnit
         if(isMoving) return;
         Bullet b = HBPools.Spawn<Bullet>(weaponHand.poolType,throwPoint.position,throwPoint.rotation);
         b.OnInit(throwPoint.position,CurrentAttackRange,this);
+        b.SetMaterial(weaponHand.CurrentMaterial);      // doc tu weaponHand chu khong tu currentWeaponItem: bot khong co item
         weaponHand.SetVisible(false);
     }
     protected void ChangeAnim(string s)
@@ -144,10 +153,12 @@ public abstract class Character : GameUnit
         isAttacking= false;
         weaponHand.SetVisible(true);
     }
+    // detector va vong tron deu la CON nen da thua huong scale cua nhan vat: chia lai de khong nhan doi
     private void RefreshAttackRange()
     {
-        detector.SetRange(CurrentAttackRange);
-        OnAttackRangeCircleChange(CurrentAttackRange);
+        float localRange = CurrentAttackRange / TF.localScale.x;
+        detector.SetRange(localRange);
+        OnAttackRangeCircleChange(localRange);
     }
     protected virtual void OnAttackRangeCircleChange(float val){}
     public void AddTarget(Character target)
@@ -220,6 +231,23 @@ public abstract class Character : GameUnit
     public void OnResume()
     {
         anim.speed = 1f;                
+    }
+    public void OnKill()
+    {
+        if(sizeLevel>=MAX_SIZE_LEVEL) return;
+        killSinceLevelUp++;
+        if(killSinceLevelUp<sizeLevel) return;      // cap n can dung n mang moi len duoc
+        SetSizeLevel(sizeLevel+1);
+    }
+    // dat cap TUYET DOI: goi bao nhieu lan cung ra cung ket qua, khong cong don
+    public void SetSizeLevel(int level)
+    {
+        sizeLevel = Mathf.Clamp(level,1,MAX_SIZE_LEVEL);
+        killSinceLevelUp = 0;
+        for(int i=0;i<levelAdd.Length;i++) levelAdd[i]=0f;
+        levelAdd[(int)StatType.AttackRange] = (sizeLevel-1)*rangePerLevel;
+        TF.localScale = Vector3.one*(1f+(sizeLevel-1)*sizePerLevel);
+        RefreshAttackRange();
     }
     protected virtual void OnDeath()
     {
@@ -321,6 +349,7 @@ public abstract class Character : GameUnit
             if(weaponHands[i].poolType != item.BulletPool) continue;
             currentWeaponItem = item;
             SetWeapon(i);
+            weaponHand.SetMaterial(item.Mat);       // Mat null = ban tran, tra ve material goc cua FBX
             RecalculateEquipStats();
             return true;
         }
@@ -354,6 +383,6 @@ public abstract class Character : GameUnit
     private float GetStat(StatType stat,float baseValue)
     {
         int i= (int) stat;
-        return (baseValue+equipAdd[i])*equipMul[i]*statMultipliers[i];    // chi so cong them duoc tinh theo ct x= (x+add)*multi*boost
+        return (baseValue+levelAdd[i]+equipAdd[i])*equipMul[i]*statMultipliers[i];    // chi so cong them duoc tinh theo ct x= (x+add)*multi*boost
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Bullet : GameUnit
 {
     [SerializeField]  private float speed = 6f;
+    [SerializeField] private MaterialSwapper swapper;
     protected float Speed => speed;
     protected Vector3 StartPos{get;private set;}
     protected float RangeAttack{get;private set;}
@@ -24,6 +25,12 @@ public abstract class Bullet : GameUnit
             HBPools.Despawn(this);
             return;
         }
+    }
+    // Dan di qua pool nen mang skin cua kiep truoc: Throw() phai gan lai MOI lan spawn
+    public void SetMaterial(Material mat)
+    {
+        if(swapper==null) return;
+        swapper.SetMaterial(mat);
     }
     protected abstract void Move();
     protected virtual bool IsFinished()=> (TF.position-StartPos).sqrMagnitude>sqrRange;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-public abstract class BaseDataSO<TItem,T> : ScriptableObject
+public abstract class BaseDataSO<TItem,T> : ScriptableObject, IShopData
 where TItem : ShopItemData<T>
 where T : Enum
 {
@@ -14,5 +14,21 @@ where T : Enum
             if(EqualityComparer<T>.Default.Equals(items[i].Type,type)) return items[i];
         }
         return null;
+    }
+
+    // Phan hien thuc IShopData: chi UI goi, va chi goi luc dung/refresh danh sach.
+    // Convert.ToInt32 tren enum co boxing nen tuyet doi khong dat vao Update.
+    public int Count => items.Count;
+    public int GetId(int index) => Convert.ToInt32(items[index].Type);
+    public int GetCost(int index) => items[index].Cost;
+    public Sprite GetIcon(int index) => items[index].Icon;
+    public StatBonus[] GetBonuses(int index) => items[index].Bonuses;
+    public int IndexOfId(int id)
+    {
+        for(int i = 0; i < items.Count; i++)
+        {
+            if(Convert.ToInt32(items[i].Type) == id) return i;
+        }
+        return -1;
     }
 }
