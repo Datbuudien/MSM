@@ -44,5 +44,5 @@ public class TestLevel
         level.StartStage(1);
         Assert.IsFalse(level.HasNextStage);
 
-    }      
+    }
 }

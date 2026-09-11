@@ -25,7 +25,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             ins= this as T;
             return;
         }
-        if(ins!=this) 
+        if(ins!=this)
         {
             IsDuplicate = true;
             Destroy(gameObject);

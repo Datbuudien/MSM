@@ -13,8 +13,8 @@ public abstract class Character : GameUnit
     [SerializeField] private Transform throwPoint;
     [SerializeField]private float attackSpeed =1f;
     [SerializeField]private float attackRange =1f;
-    [SerializeField]private float rangePerLevel =1f;     // moi cap size cong thang vao attackRange goc
-    [SerializeField]private float sizePerLevel =.1f;     // cap 10 => scale 1.9
+    [SerializeField]private float rangePerLevel =1f;
+    [SerializeField]private float sizePerLevel =.1f;
     [SerializeField]private TargetDetector detector;
     [SerializeField]private WeaponHand[] weaponHands;
     [SerializeField] private Transform hatPoint;
@@ -36,16 +36,17 @@ public abstract class Character : GameUnit
     public bool HasTarget=> GetNearestTarget() !=null;
     public bool HasShield => hasShield;
     public bool IsDead=>isDead;
+    public virtual bool IsSoundOwner => false;
     private int currentWeaponIndex;
     private readonly List<Character> targets = new List<Character>();
     private readonly List<ActiveEffect> activeEffects= new List<ActiveEffect>();
-    private readonly float [] statMultipliers = new float[(int)StatType.Count]; // boots
+    private readonly float [] statMultipliers = new float[(int)StatType.Count];
     private float CurrentSpeed => GetStat(StatType.MoveSpeed, speed);
     private float CurrentAttackSpeed => GetStat(StatType.AttackSpeed, attackSpeed);
     public float CurrentAttackRange => GetStat(StatType.AttackRange, attackRange);
     private readonly float [] equipAdd = new float [(int)StatType.Count];
     private readonly float [] equipMul = new float [(int)StatType.Count];
-    private readonly float [] levelAdd = new float [(int)StatType.Count];   // cap size, cong thang vao base
+    private readonly float [] levelAdd = new float [(int)StatType.Count];
     private int sizeLevel;
     private int killSinceLevelUp;
     public int SizeLevel => sizeLevel;
@@ -76,7 +77,7 @@ public abstract class Character : GameUnit
         isDead=false;
         lastAttacker = null;
         rb.isKinematic=false;
-        rb.linearVelocity = Vector3.zero;       // doi vi tri bang transform khong xoa velocity cu
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         coll.enabled=true;
         CancelInvoke();
@@ -87,7 +88,8 @@ public abstract class Character : GameUnit
         isAttacking=false;
         ChangeAnim(Constatnts.ANIM_IDE);
         SetWeapon(0);
-        SetSizeLevel(1);        // cap size la tien trinh trong MOT van, phai ve 1 moi lan hoi sinh
+        SetSizeLevel(1);
+        SetTargeted(false);
     }
     protected virtual void OnUpdate(){}
     void Update()
@@ -121,8 +123,9 @@ public abstract class Character : GameUnit
         if(isMoving) return;
         Bullet b = HBPools.Spawn<Bullet>(weaponHand.poolType,throwPoint.position,throwPoint.rotation);
         b.OnInit(throwPoint.position,CurrentAttackRange,this);
-        b.SetMaterial(weaponHand.CurrentMaterial);      // doc tu weaponHand chu khong tu currentWeaponItem: bot khong co item
+        b.SetMaterial(weaponHand.CurrentMaterial);
         weaponHand.SetVisible(false);
+        if (IsSoundOwner) SoundManager.Ins.PlaySfx(SfxType.Throw);
     }
     protected void ChangeAnim(string s)
     {
@@ -153,7 +156,6 @@ public abstract class Character : GameUnit
         isAttacking= false;
         weaponHand.SetVisible(true);
     }
-    // detector va vong tron deu la CON nen da thua huong scale cua nhan vat: chia lai de khong nhan doi
     private void RefreshAttackRange()
     {
         float localRange = CurrentAttackRange / TF.localScale.x;
@@ -174,7 +176,7 @@ public abstract class Character : GameUnit
     {
         Character res = null;
         float minDis = float.MaxValue;
-        Vector3 currentPos = TF.position; 
+        Vector3 currentPos = TF.position;
         for(int i= targets.Count-1; i>=0; i--)
         {
             Character tmp = targets[i];
@@ -205,13 +207,12 @@ public abstract class Character : GameUnit
         if (hasShield)
         {
             hasShield=false;
+            SoundManager.Ins.PlaySfx(SfxType.WeaponHit);
             return;
         }
         lastAttacker = c;
         OnDeath();
     }
-    // Doi cho rigidbody: PHAI qua rb.position vi Physics.autoSyncTransforms dang TAT,
-    // gan transform.position khong day vi tri moi xuong physics engine ngay.
     public void Teleport(Vector3 position, Quaternion rotation)
     {
         rb.linearVelocity = Vector3.zero;
@@ -221,25 +222,35 @@ public abstract class Character : GameUnit
         TF.SetPositionAndRotation(position, rotation);
         Physics.SyncTransforms();
     }
+    public void RotateBy(float degrees)
+    {
+        Quaternion rotation = TF.rotation * Quaternion.Euler(0f, degrees, 0f);
+        rb.rotation = rotation;
+        TF.rotation = rotation;
+    }
+    public void ResetRotation()
+    {
+        rb.rotation = Quaternion.identity;
+        TF.rotation = Quaternion.identity;
+    }
     public void OnPause()
     {
         anim.speed = 0f;
-        if(rb.isKinematic) return;      // xac chet da kinematic, set velocity la Unity warning
+        if(rb.isKinematic) return;
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
     public void OnResume()
     {
-        anim.speed = 1f;                
+        anim.speed = 1f;
     }
-    public void OnKill()
+    public virtual void OnKill()
     {
         if(sizeLevel>=MAX_SIZE_LEVEL) return;
         killSinceLevelUp++;
-        if(killSinceLevelUp<sizeLevel) return;      // cap n can dung n mang moi len duoc
+        if(killSinceLevelUp<sizeLevel) return;
         SetSizeLevel(sizeLevel+1);
     }
-    // dat cap TUYET DOI: goi bao nhieu lan cung ra cung ket qua, khong cong don
     public void SetSizeLevel(int level)
     {
         sizeLevel = Mathf.Clamp(level,1,MAX_SIZE_LEVEL);
@@ -255,6 +266,7 @@ public abstract class Character : GameUnit
         coll.enabled=false;
         rb.isKinematic=true;
         ChangeAnim(Constatnts.ANIM_DEAD);
+        SoundManager.Ins.PlaySfx(SfxType.Die);
     }
     public bool AddTimedEffect(TimedBoosterEffect effect,float duration)
     {
@@ -349,7 +361,7 @@ public abstract class Character : GameUnit
             if(weaponHands[i].poolType != item.BulletPool) continue;
             currentWeaponItem = item;
             SetWeapon(i);
-            weaponHand.SetMaterial(item.Mat);       // Mat null = ban tran, tra ve material goc cua FBX
+            weaponHand.SetMaterial(item.Mat);
             RecalculateEquipStats();
             return true;
         }
@@ -383,6 +395,7 @@ public abstract class Character : GameUnit
     private float GetStat(StatType stat,float baseValue)
     {
         int i= (int) stat;
-        return (baseValue+levelAdd[i]+equipAdd[i])*equipMul[i]*statMultipliers[i];    // chi so cong them duoc tinh theo ct x= (x+add)*multi*boost
+        return (baseValue+levelAdd[i]+equipAdd[i])*equipMul[i]*statMultipliers[i];
     }
+    public virtual void SetTargeted(bool value){}
 }

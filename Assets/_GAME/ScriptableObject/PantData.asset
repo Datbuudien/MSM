@@ -15,51 +15,78 @@ MonoBehaviour:
   items:
   - Type: 0
     Cost: 0
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: e8d60f07c33dfa54e8c16b5396bc1744, type: 3}
     Bonuses: []
     Mat: {fileID: 2100000, guid: 30078117083e47e48bed684b59bf7e3d, type: 2}
   - Type: 1
     Cost: 450
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: ea3efd6c6910fa6498c454b9b4f09e25, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.12
     Mat: {fileID: 2100000, guid: d137cf59893a72c4a8be6a52ad8c55b0, type: 2}
   - Type: 2
     Cost: 350
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: d80bb544acbea734190f332f9d4d9236, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.1
     Mat: {fileID: 2100000, guid: c32b7038dfabb42409ae1869ff5c4bdf, type: 2}
   - Type: 3
     Cost: 250
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 3f6db70350e1ad341a755c4ae7b8d461, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.07
     Mat: {fileID: 2100000, guid: 9e058cab613ac4948be02f74ca7da3fb, type: 2}
   - Type: 4
     Cost: 300
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: e158a55b801e9a94b997df737ce2d5d3, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.09
     Mat: {fileID: 2100000, guid: ff6f114e2d375264ca560f783cb08d0d, type: 2}
   - Type: 5
     Cost: 200
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 855c7be44d3c5fc4caf6f6aaea7474b3, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.06
     Mat: {fileID: 2100000, guid: 7da174df523fa2147af8150302ba495b, type: 2}
   - Type: 6
     Cost: 150
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: bfbb0f9dc91874a45b8a1661536133d3, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.05
     Mat: {fileID: 2100000, guid: 8d1c7454d1527214e96cdf153a4ec389, type: 2}
   - Type: 7
     Cost: 100
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 34f4dca21ec1b1b47bc378f190a6131d, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.04
     Mat: {fileID: 2100000, guid: 69ba59baec1f4d342b4301c64d9358ac, type: 2}
   - Type: 8
     Cost: 75
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 81724e6af7ba2f24ca20fac7e408fd08, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.04
     Mat: {fileID: 2100000, guid: d9df6d7ec7541d94aa18d9b768d3d932, type: 2}
   - Type: 9
     Cost: 50
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 9aa266625a704934c9536589f2a438c1, type: 3}
+    Bonuses:
+    - Stat: 2
+      FlatBonus: 0
+      PercentBonus: 0.03
     Mat: {fileID: 2100000, guid: c1736cab234f6ec4abac9c8096afc469, type: 2}

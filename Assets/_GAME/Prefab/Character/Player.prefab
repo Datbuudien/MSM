@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHand
   pt: 1
   model: {fileID: 679261262254208966}
+  swapper: {fileID: 0}
 --- !u!1 &2450952732147973179
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHand
   pt: 2
   model: {fileID: 280463638586446177}
+  swapper: {fileID: 0}
 --- !u!1 &6967699199747698680
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponHand
   pt: 3
   model: {fileID: 7889513020818283097}
+  swapper: {fileID: 0}
 --- !u!1 &7836405437793112193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,6 +1106,8 @@ MonoBehaviour:
   throwPoint: {fileID: 352459809548446440}
   attackSpeed: 1
   attackRange: 2
+  rangePerLevel: 1
+  sizePerLevel: 0.1
   detector: {fileID: 8598074803995425630}
   weaponHands:
   - {fileID: 4295676884424192670}

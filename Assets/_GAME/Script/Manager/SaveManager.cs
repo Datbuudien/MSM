@@ -38,11 +38,8 @@ public class SaveManager : Singleton<SaveManager>
         if (File.Exists(FilePath))
         {
             try { data = JsonMapper.ToObject<PlayerData>(File.ReadAllText(FilePath)); }
-            catch (Exception e)
+            catch (Exception)
             {
-#if UNITY_EDITOR
-                Debug.LogError($"Save hong, dung mac dinh: {e.Message}");
-#endif
                 data = null;
             }
         }
@@ -52,7 +49,6 @@ public class SaveManager : Singleton<SaveManager>
     public void Save()
     {
         if (data == null) return;
-        // ghi ra file tam roi moi thay the: bi giet giua chung thi file that van nguyen ven
         string tempPath = FilePath + ".tmp";
         File.WriteAllText(tempPath, JsonMapper.ToJson(data));
         if (File.Exists(FilePath)) File.Delete(FilePath);
@@ -114,6 +110,15 @@ public class SaveManager : Singleton<SaveManager>
         EnsureSize(data.PantShopState, Enum.GetValues(typeof(PantType)).Length);
         EnsureSize(data.AccessoryShopState, Enum.GetValues(typeof(AccessoryType)).Length);
 
+        if (data.HasSoundSettings == false)
+        {
+            data.HasSoundSettings = true;
+            data.MusicVolume = Constatnts.SOUND_MUSIC_DEFAULT;
+            data.SfxVolume = Constatnts.SOUND_SFX_DEFAULT;
+        }
+        data.MusicVolume = Mathf.Clamp01(data.MusicVolume);
+        data.SfxVolume = Mathf.Clamp01(data.SfxVolume);
+
         data.Gold = Mathf.Max(0, data.Gold);
         data.Level = Mathf.Max(0, data.Level);
         data.WeaponEquipped = Clamp(data.WeaponEquipped, data.WeaponShopState.Count);
@@ -124,9 +129,8 @@ public class SaveManager : Singleton<SaveManager>
     private PlayerData CreateDefault()
     {
         PlayerData tmp = new PlayerData();
-        // phai noi list truoc khi index vao no: PlayerData khoi tao list RONG
         EnsureSize(tmp.WeaponShopState, Enum.GetValues(typeof(WeaponType)).Length);
-        tmp.WeaponShopState[(int)WeaponType.Knife] = 1;   // dao la vu khi cho khong
+        tmp.WeaponShopState[(int)WeaponType.Knife] = 1;
         tmp.WeaponEquipped = (int)WeaponType.Knife;
         return tmp;
     }

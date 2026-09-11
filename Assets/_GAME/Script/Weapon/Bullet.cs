@@ -26,7 +26,6 @@ public abstract class Bullet : GameUnit
             return;
         }
     }
-    // Dan di qua pool nen mang skin cua kiep truoc: Throw() phai gan lai MOI lan spawn
     public void SetMaterial(Material mat)
     {
         if(swapper==null) return;
@@ -39,6 +38,7 @@ public abstract class Bullet : GameUnit
         if(CharacterRegistry.TryGet(other,out Character victim) == false)
         {
             if(other.gameObject.layer != Constatnts.LAYER_OBSTACLE) return;
+            if(owner!=null && owner.IsSoundOwner) SoundManager.Ins.PlaySfx(SfxType.WeaponHit);
             OnHitObstacle();
             return;
         }

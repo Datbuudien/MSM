@@ -16,14 +16,13 @@ public class ShopItemUI : MonoBehaviour
     private int id;
     private Action<ShopCategory, int> onClick;
 
-    // MOT lan trong doi cell: cell duoc dung o OnSetup cua CanvasShop, khong bao gio dung lai (KI-14)
     public void OnSetup(ShopCategory category, int id, Sprite iconSprite, int cost, Action<ShopCategory, int> onClick)
     {
         this.category = category;
         this.id = id;
         this.onClick = onClick;
         icon.sprite = iconSprite;
-        icon.enabled = iconSprite != null;      // chua co icon thi de trong, do hon la o vuong trang
+        icon.enabled = iconSprite != null;
         txtCost.text = cost.ToString();
         button.onClick.AddListener(HandleClick);
     }

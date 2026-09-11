@@ -24,7 +24,6 @@ public class UICanvas : MonoBehaviour
         EnsureInit();
     }
 
-    // UIManager goi MOI lan mo. Hai hook duoi tach theo tan suat, dung nham la bug im lang
     public void Setup()
     {
         EnsureInit();
@@ -38,11 +37,8 @@ public class UICanvas : MonoBehaviour
         OnOpen();
     }
 
-    // MOT lan trong doi canvas: cache, AddListener, dung danh sach item
     protected virtual void OnSetup() { }
-    // MOI lan mo: doc lai gold, refresh trang thai dang chon
     protected virtual void OnOpen() { }
-    // back key cua Android
     public virtual void BackKey() { }
 
     public virtual void Open()
@@ -61,7 +57,7 @@ public class UICanvas : MonoBehaviour
     }
     public virtual void CloseDirectly()
     {
-        CloseAllPopup();        // dong canvas la dong luon popup con: chung KHONG nam trong tu dien cua UIManager
+        CloseAllPopup();
         UIManager.Ins.RemoveBackUI(this);
         gameObject.SetActive(false);
         if (isDestroyOnClose) Destroy(gameObject);

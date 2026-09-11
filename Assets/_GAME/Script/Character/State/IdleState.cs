@@ -19,6 +19,6 @@ public class IdleState : IBotState
     }
     public void OnExit(Bot bot)
     {
-        
+
     }
 }

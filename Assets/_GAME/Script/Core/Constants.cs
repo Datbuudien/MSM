@@ -25,6 +25,9 @@ public class Constatnts
     public const string SHOP_LABEL_BUY = "BUY";
     public const string SHOP_LABEL_EQUIP = "EQUIP";
     public const string SHOP_LABEL_EQUIPPED = "EQUIPPED";
-    public const int SHOP_PAGE_SIZE = 9;              // 3 cot x 3 hang moi trang
+    public const int SHOP_PAGE_SIZE = 9;
     public const string SHOP_STAT_NONE = "-";
+    public const float SOUND_MUSIC_DEFAULT = .7f;
+    public const float SOUND_SFX_DEFAULT = 1f;
+    public const float SOUND_PREVIEW_INTERVAL = .15f;
 }

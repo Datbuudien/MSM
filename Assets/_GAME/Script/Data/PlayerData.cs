@@ -11,4 +11,7 @@ public class PlayerData
     public List<int> HatShopState = new List<int>();
     public List<int> PantShopState = new List<int>();
     public List<int> AccessoryShopState = new List<int>();
+    public bool HasSoundSettings;
+    public float MusicVolume;
+    public float SfxVolume;
 }

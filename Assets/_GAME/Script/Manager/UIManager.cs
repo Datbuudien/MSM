@@ -16,7 +16,6 @@ public class UIManager : Singleton<UIManager>
     {
         UICanvas topUI = BackTopUI;
         if (topUI == null) return;
-        // Input System moi: nut Back cung cua Android duoc map vao escapeKey
         Keyboard keyboard = Keyboard.current;
         if (keyboard == null) return;
         if (keyboard.escapeKey.wasPressedThisFrame == false) return;
@@ -73,16 +72,12 @@ public class UIManager : Singleton<UIManager>
     {
         Type type = typeof(T);
         if (uiCanvasPrefab.TryGetValue(type, out UICanvas cached)) return cached as T;
-        // uiResources null khi UIManager bi Singleton tu tao vi khong co san trong scene
         for (int i = 0; uiResources != null && i < uiResources.Length; i++)
         {
             if (uiResources[i] is T == false) continue;
             uiCanvasPrefab[type] = uiResources[i];
             return uiResources[i] as T;
         }
-#if UNITY_EDITOR
-        Debug.LogError($"Chua keo prefab {type.Name} vao o Ui Resources cua UIManager");
-#endif
         return null;
     }
 

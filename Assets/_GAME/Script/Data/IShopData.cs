@@ -6,5 +6,5 @@ public interface IShopData
     int GetCost(int index);
     Sprite GetIcon(int index);
     StatBonus[] GetBonuses(int index);
-    int IndexOfId(int id);      
+    int IndexOfId(int id);
 }

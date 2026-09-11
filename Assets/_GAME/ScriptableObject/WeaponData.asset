@@ -15,16 +15,31 @@ MonoBehaviour:
   items:
   - Type: 1
     Cost: 0
-    Icon: {fileID: 0}
+    Icon: {fileID: 21300000, guid: d88c096920af6934190f32bda956470f, type: 3}
     Bonuses: []
     BulletPool: 1
+    Mat: {fileID: 0}
   - Type: 2
     Cost: 0
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 629b49f45d512ee48800db459b7480c7, type: 3}
+    Bonuses:
+    - Stat: 0
+      FlatBonus: 0
+      PercentBonus: 0.15
+    - Stat: 1
+      FlatBonus: 0
+      PercentBonus: -0.12
     BulletPool: 2
+    Mat: {fileID: 0}
   - Type: 3
     Cost: 0
-    Icon: {fileID: 0}
-    Bonuses: []
+    Icon: {fileID: 21300000, guid: 2c672490fdb518f40a5d9468bb0619fa, type: 3}
+    Bonuses:
+    - Stat: 1
+      FlatBonus: 0
+      PercentBonus: 0.15
+    - Stat: 0
+      FlatBonus: 0
+      PercentBonus: -0.12
     BulletPool: 3
+    Mat: {fileID: 0}

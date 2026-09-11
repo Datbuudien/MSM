@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField]private RectTransform bg;
     [SerializeField]private RectTransform handle;
     [SerializeField]private CanvasGroup canvasGroup;
@@ -19,33 +18,16 @@ public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler
     }
     private void HideJoyStick()
     {
-        canvasGroup.alpha =0f; // cach1
+        canvasGroup.alpha =0f;
 
-        // bg.gameObject.SetActive(false); // cach 2
-        
-        // //cach3
-        // Color c1 = bgIMG.color;
-        // c1.a = 0f;
-        // bgIMG.color=c1;
-        // Color c2 = handleIMG.color;
-        // c2.a=0f;
-        // handleIMG.color=c2;
+
 
     }
     private void ShowJoyStick()
     {
-        // //cach1
         canvasGroup.alpha =1f;
 
-        // bg.gameObject.SetActive(true); // cach 2
-        
-        // //cach3
-        // Color c1 = bgIMG.color;
-        // c1.a = 1f;
-        // bgIMG.color=c1;
-        // Color c2 = handleIMG.color;
-        // c2.a=1f;
-        // handleIMG.color=c2;
+
     }
     public void OnPointerDown(PointerEventData e)
     {
@@ -55,7 +37,7 @@ public class FloatingJoyStick : MonoBehaviour, IPointerDownHandler, IDragHandler
         ShowJoyStick();
         bg.position = e.position;
         handle.anchoredPosition = Vector2.zero;
-        OnDrag(e);     
+        OnDrag(e);
     }
     public void OnDrag(PointerEventData e)
     {

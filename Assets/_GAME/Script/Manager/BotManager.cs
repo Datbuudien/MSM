@@ -8,23 +8,21 @@ public class BotManager : Singleton<BotManager>
     [SerializeField]private float minDistanceToPlayer=10f;
     private readonly List<Bot> bots=new List<Bot>();
     public int AliveCount=>bots.Count;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public bool SpawnBot(int playerLevel)
     {
         if(TryGetSpawnPoint(out Vector3 point)==false) return false;
         Bot bot = HBPools.Spawn<Bot>(PoolType.Bot,point,Quaternion.identity);
         if(bot==null) return false;
-        bot.OnInit();                                   // ve cap 1 truoc
-        bot.SetSizeLevel(RollBotLevel(playerLevel));    // roi moi dat cap theo nguoi choi
+        bot.OnInit();
+        bot.SetSizeLevel(RollBotLevel(playerLevel));
         bots.Add(bot);
         return true;
     }
-    // cua so rong 3 cap, truot len theo nguoi choi va dung lai o mep tren
     private int RollBotLevel(int playerLevel)
     {
         int hi = Mathf.Min(playerLevel+2,Character.MAX_SIZE_LEVEL);
         int lo = Mathf.Max(hi-2,1);
-        return Random.Range(lo,hi+1);       // Range(int,int) loai tru can tren
+        return Random.Range(lo,hi+1);
     }
     public void OnDeath(Bot bot, Character killer)
     {
@@ -37,7 +35,7 @@ public class BotManager : Singleton<BotManager>
         bots.Clear();
     }
     private bool TryGetSpawnPoint(out Vector3 point)
-    {   
+    {
         float sqrMinDis=minDistanceToPlayer*minDistanceToPlayer;
         point = Vector3.zero;
         for(int i = 0; i < Constatnts.SPAWN_TRY_COUNT; i++)

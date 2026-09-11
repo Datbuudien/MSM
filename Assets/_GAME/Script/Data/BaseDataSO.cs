@@ -16,8 +16,6 @@ where T : Enum
         return null;
     }
 
-    // Phan hien thuc IShopData: chi UI goi, va chi goi luc dung/refresh danh sach.
-    // Convert.ToInt32 tren enum co boxing nen tuyet doi khong dat vao Update.
     public int Count => items.Count;
     public int GetId(int index) => Convert.ToInt32(items[index].Type);
     public int GetCost(int index) => items[index].Cost;

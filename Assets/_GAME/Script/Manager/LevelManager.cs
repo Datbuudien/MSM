@@ -22,20 +22,20 @@ public class LevelManager : Singleton<LevelManager>
     public void OnResetLevel()
     {
         BotManager.Ins.CollectAll();
-        menuStage.SetActive(true);          // bat san DICH truoc
+        menuStage.SetActive(true);
         cameraFollow.SetMenuView(true);
         player.OnInit();
-        ApplyPlayerEquipment();             // OnInit co SetWeapon(0), phai mac lai NGAY sau no
-        player.SetRangeVisible(false);      // menu khong hien vong tam danh
+        ApplyPlayerEquipment();
+        player.SetRangeVisible(false);
         player.Teleport(menuStagePoint.position, Quaternion.identity);
-        arena.SetActive(false);             // roi moi tat san CU
+        arena.SetActive(false);
     }
     public void OnStartGame()
     {
         BotManager.Ins.CollectAll();
-        arena.SetActive(true);              // bat san + NavMesh truoc khi spawn bot     
+        arena.SetActive(true);
         player.OnInit();
-        ApplyPlayerEquipment();             // GamePlay co 2 loi vao, ca hai deu phai mac do (KI-20)
+        ApplyPlayerEquipment();
         player.Teleport(playerSpawnPoint.position, Quaternion.identity);
         cameraFollow.SetMenuView(false);
         player.SetRangeVisible(true);
@@ -44,7 +44,6 @@ public class LevelManager : Singleton<LevelManager>
         level.StartStage(0);
         SpawnUntilFull();
     }
-    // Mac do that theo save. Goi sau OnInit() o MOI loi vao, va luc dong shop.
     public void ApplyPlayerEquipment()
     {
         for(int c = 0; c < Constatnts.SHOP_CATEGORY_COUNT; c++)
@@ -53,7 +52,9 @@ public class LevelManager : Singleton<LevelManager>
             PreviewEquip(category, SaveManager.Ins.GetEquipped(category));
         }
     }
-    // Mac thu trong shop. O menu khong ai doc chi so nen khong can tach "mac hinh" voi "mac that".
+    public void RotatePlayer(float degrees) => player.RotateBy(degrees);
+    public void ResetPlayerRotation() => player.ResetRotation();
+    public void SetShopView(bool isShop) => cameraFollow.SetShopView(isShop);
     public void PreviewEquip(ShopCategory category, int id)
     {
         switch(category)
@@ -66,15 +67,14 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void OnBotDeath(Character killer)
     {
-        if (killer != null) killer.OnKill();  // bot giet duoc cung to len
-        if (killer == player) killCount++;   // bot giet nhau thi khong tinh cong nguoi choi
+        if (killer != null) killer.OnKill();
+        if (killer == player) killCount++;
         SpawnUntilFull();
         if (level.IsStageCleared(BotManager.Ins.AliveCount) == false) return;
         OnStageCleared();
     }
     public void OnPlayerDeath()
     {
-        // thua van an cong suc: chi tien theo so bot da ha, khong co base va khong len level
         lastReward = killCount * Constatnts.GOLD_PER_KILL;
         SaveManager.Ins.Data.Gold += lastReward;
         SaveManager.Ins.Save();

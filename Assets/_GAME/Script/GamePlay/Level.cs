@@ -1,6 +1,6 @@
 using UnityEngine;
 [System.Serializable]
-public class Level 
+public class Level
 {
     private const int MAX_BOT=10;
     [SerializeField]private int[]totalsCharacter = {10,15};

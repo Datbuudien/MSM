@@ -4,6 +4,6 @@ using System;
 public class StatBonus
 {
     public StatType Stat;
-    public float FlatBonus;      // +
-    public float PercentBonus;   // 0.2 = +20%
+    public float FlatBonus;
+    public float PercentBonus;
 }

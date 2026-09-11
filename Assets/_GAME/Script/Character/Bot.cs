@@ -3,6 +3,7 @@ using UnityEngine.AI;
 public class Bot:Character
 {
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private Transform tg;
     private IBotState currentState;
     protected override void Awake()
     {
@@ -65,4 +66,11 @@ public class Bot:Character
         Invoke(nameof(DespawnSelf),Constatnts.BOT_DESPAWN_DELAY);
     }
     private void DespawnSelf()=>HBPools.Despawn(this);
+    public override void SetTargeted(bool value)
+    {
+        if(tg==null) return;
+        if(tg.gameObject.activeSelf==value) return;
+        tg.gameObject.SetActive(value);
+    }
+
 }

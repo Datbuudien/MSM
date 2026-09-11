@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 4382261572404614140}
   - component: {fileID: 4840347735873973587}
   - component: {fileID: 6051791150553563857}
+  - component: {fileID: 3598070857568566933}
   m_Layer: 5
   m_Name: ButtonOffer
   m_TagString: Untagged
@@ -264,6 +265,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3598070857568566933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3637365952899713167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401af8e89777e084887f57be7107ab67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::ButtonSfx
+  type: 0
 --- !u!1 &4645187294698896562
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +503,7 @@ GameObject:
   - component: {fileID: 4829719374158152141}
   - component: {fileID: 7737237953514085228}
   - component: {fileID: 3780220496032159525}
+  - component: {fileID: 7635789177778471837}
   m_Layer: 5
   m_Name: ButtonPlay
   m_TagString: Untagged
@@ -609,6 +624,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7635789177778471837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6894836239972501840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401af8e89777e084887f57be7107ab67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::ButtonSfx
+  type: 0
 --- !u!1 &7482960199263194547
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +724,7 @@ GameObject:
   - component: {fileID: 1659208908143426902}
   - component: {fileID: 1111462785863644304}
   - component: {fileID: 8570444689426591729}
+  - component: {fileID: 4897685999305907236}
   m_Layer: 5
   m_Name: ButtonShop
   m_TagString: Untagged
@@ -816,6 +845,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4897685999305907236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7586787880595982911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401af8e89777e084887f57be7107ab67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::ButtonSfx
+  type: 0
 --- !u!1 &7964593005016163275
 GameObject:
   m_ObjectHideFlags: 0

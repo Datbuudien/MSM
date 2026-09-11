@@ -22,12 +22,17 @@ public class CanvasShop : UICanvas
     [SerializeField] private Color dotOffColor = Color.gray;
 
     [Header("Chi so")]
-    [SerializeField] private TextMeshProUGUI[] txtStats;    // Size = StatType.Count, dung DUNG thu tu enum
+    [SerializeField] private TextMeshProUGUI[] txtStats;
     [SerializeField] private GameObject infoPopup;
     [SerializeField] private Color statUpColor = Color.green;
     [SerializeField] private Color statDownColor = Color.red;
     [SerializeField] private Color statNoneColor = Color.gray;
 
+    [Header("Xem ky / xoay nhan vat")]
+    [SerializeField] private GameObject panel;
+    [SerializeField] private GameObject inspectLayer;
+
+    private bool isInspecting;
     private readonly List<ShopItemUI>[] cells = new List<ShopItemUI>[Constatnts.SHOP_CATEGORY_COUNT];
     private readonly int[] selectedIndex = new int[Constatnts.SHOP_CATEGORY_COUNT];
     private readonly int[] currentPage = new int[Constatnts.SHOP_CATEGORY_COUNT];
@@ -41,9 +46,6 @@ public class CanvasShop : UICanvas
             IShopData data = DataManager.Ins.GetData(category);
             if (data == null)
             {
-#if UNITY_EDITOR
-                Debug.LogError($"Chua keo ScriptableObject {category} vao DataManager");
-#endif
                 cells[c] = new List<ShopItemUI>();
                 continue;
             }
@@ -62,14 +64,15 @@ public class CanvasShop : UICanvas
     }
     protected override void OnOpen()
     {
-        UIManager.Ins.CloseUI<CanvasMainMenu>(); 
+        UIManager.Ins.CloseUI<CanvasMainMenu>();
+        SetInspect(false);
         if (infoPopup != null) infoPopup.SetActive(false);
         for (int c = 0; c < Constatnts.SHOP_CATEGORY_COUNT; c++)
         {
             ShopCategory category = (ShopCategory)c;
             int index = DataManager.Ins.GetData(category).IndexOfId(SaveManager.Ins.GetEquipped(category));
             selectedIndex[c] = Mathf.Max(index, 0);
-            currentPage[c] = selectedIndex[c] / Constatnts.SHOP_PAGE_SIZE;   // mo dung trang chua mon dang mac
+            currentPage[c] = selectedIndex[c] / Constatnts.SHOP_PAGE_SIZE;
         }
         OnClickTab((int)ShopCategory.Weapon);
     }
@@ -94,6 +97,16 @@ public class CanvasShop : UICanvas
         currentPage[c]++;
         Refresh();
     }
+    public void OnClickInspect() => SetInspect(isInspecting == false);
+
+    private void SetInspect(bool on)
+    {
+        isInspecting = on;
+        if (panel != null) panel.SetActive(on == false);
+        if (inspectLayer != null) inspectLayer.SetActive(on);
+        LevelManager.Ins.SetShopView(on == false);
+    }
+
     public void OnClickInfo()
     {
         if (infoPopup == null) return;
@@ -101,8 +114,10 @@ public class CanvasShop : UICanvas
     }
     public void OnClickClose()
     {
-        LevelManager.Ins.ApplyPlayerEquipment();        // bo cai dang mac thu, tra ve do da luu
-        // IsLoaded truoc: GetUI<T>() se TU Instantiate canvas neu chua co, khong phai getter thuan
+        SetInspect(false);
+        LevelManager.Ins.ApplyPlayerEquipment();
+        LevelManager.Ins.ResetPlayerRotation();
+        LevelManager.Ins.SetShopView(false);
         UIManager.Ins.OpenUI<CanvasMainMenu>();
         Close(0f);
     }
@@ -113,6 +128,11 @@ public class CanvasShop : UICanvas
             infoPopup.SetActive(false);
             return;
         }
+        if (isInspecting)
+        {
+            SetInspect(false);
+            return;
+        }
         OnClickClose();
     }
 
@@ -121,7 +141,7 @@ public class CanvasShop : UICanvas
         int index = DataManager.Ins.GetData(category).IndexOfId(id);
         if (index < 0) return;
         selectedIndex[(int)category] = index;
-        LevelManager.Ins.PreviewEquip(category, id);    // mac thu ngay, chua mua cung mac
+        LevelManager.Ins.PreviewEquip(category, id);
         Refresh();
     }
     private void OnClickAction()
@@ -132,10 +152,10 @@ public class CanvasShop : UICanvas
         if (SaveManager.Ins.IsOwned(currentTab, id) == false
             && SaveManager.Ins.TryBuy(currentTab, id, data.GetCost(index)) == false) return;
         SaveManager.Ins.Equip(currentTab, id);
+        SoundManager.Ins.PlaySfx(SfxType.Buy);
         Refresh();
     }
 
-    // CeilToInt chu khong chia int: 32/9 = 3, mat trang cuoi ma khong bao loi (pitfall #9)
     private static int PageCount(IShopData data)
         => Mathf.Max(1, Mathf.CeilToInt((float)data.Count / Constatnts.SHOP_PAGE_SIZE));
 
@@ -193,7 +213,6 @@ public class CanvasShop : UICanvas
             txtStats[stat].color = bonuses[i].FlatBonus + bonuses[i].PercentBonus < 0f ? statDownColor : statUpColor;
         }
     }
-    // "+2" hoac "+100%" hoac "+2 +100%" khi mon cho ca hai kieu. So am tu mang dau tru.
     private static string Describe(StatBonus bonus)
     {
         string res = "";

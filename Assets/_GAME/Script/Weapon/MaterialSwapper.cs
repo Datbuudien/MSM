@@ -1,6 +1,4 @@
 using UnityEngine;
-// Doi material cho model nhieu slot (dao 2 slot, bua 2, boomerang 1...).
-// Cache ban goc luc Awake de con duong ve "vu khi tran".
 public class MaterialSwapper : MonoBehaviour
 {
     [SerializeField] private Renderer[] renders;
@@ -22,7 +20,7 @@ public class MaterialSwapper : MonoBehaviour
     }
     public void SetMaterial(Material mat)
     {
-        if (current == mat) return;     // dan lien tiep cung skin: khong dung toi renderer
+        if (current == mat) return;
         current = mat;
         for (int i = 0; i < renders.Length; i++)
         {
@@ -33,7 +31,7 @@ public class MaterialSwapper : MonoBehaviour
             }
             Material[] tmp = slots[i];
             for (int s = 0; s < tmp.Length; s++) tmp[s] = mat;
-            renders[i].sharedMaterials = tmp;   // sharedMaterials: KHONG nhan ban instance (pitfall #1)
+            renders[i].sharedMaterials = tmp;
         }
     }
 }
